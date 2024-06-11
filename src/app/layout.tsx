@@ -6,7 +6,7 @@ import { MusicProvider } from "@/components/MusicProvider";
 
 export const metadata: Metadata = {
   title: "SUPARHERO",
-  description: "Lyric Application for Magical Mirai Programming Contest 2024.",
+  description: "Lyric Application for MAGICAL MIRAI Programming Contest 2024",
 };
 
 export default function AppLayout({
