@@ -1,38 +1,26 @@
 "use client";
 
-import {
-  createContext,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import {
-  IBeat,
-  Player,
-  PlayerListener,
-} from "textalive-app-api";
-
-import { formatPhrase } from "@/utils/formatPhrase";
+import { createContext, ReactNode, useEffect, useRef, useState } from "react";
+import { IBeat, IPhrase, Player, PlayerListener } from "textalive-app-api";
 
 export type MusicType = {
   player: Player | undefined;
   beat: IBeat | undefined;
   isPlay: boolean;
-  lyric: string;
+  phrase: IPhrase | undefined;
 };
 
 export const MusicContext = createContext<MusicType>({
   player: undefined,
   beat: undefined,
   isPlay: false,
-  lyric: "",
+  phrase: undefined,
 });
 
 export const MusicProvider = ({ children }: { children: ReactNode }) => {
   const [player, setPlayer] = useState<Player | undefined>(undefined);
   const [beat, setBeat] = useState<IBeat | undefined>(undefined);
-  const [lyric, setLyric] = useState<string>("");
+  const [phrase, setPhrase] = useState<IPhrase | undefined>(undefined);
   const [isPlay, setIsPlay] = useState<boolean>(false);
 
   const mediaElementRef = useRef(null);
@@ -49,10 +37,9 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
       onTimerReady: () => {
         let phrase = player.video.firstPhrase;
         while (phrase) {
-          const formattedPhrase = formatPhrase(phrase);
           phrase.animate = (now, unit) => {
             if (unit.startTime <= now && unit.endTime > now) {
-              setLyric(formattedPhrase);
+              setPhrase(unit);
             }
           };
 
@@ -84,9 +71,7 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <MusicContext.Provider
-      value={{ player, beat, isPlay, lyric }}
-    >
+    <MusicContext.Provider value={{ player, beat, isPlay, phrase }}>
       <div className="hidden" ref={mediaElementRef} />
       {children}
     </MusicContext.Provider>

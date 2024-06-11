@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+	overflow: hidden;
+}
+
 img {
 	user-drag: none;
 	-webkit-user-drag: none;
