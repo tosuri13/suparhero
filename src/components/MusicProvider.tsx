@@ -42,7 +42,6 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
               setPhrase(unit);
             }
           };
-
           if (phrase.next === null) {
             break;
           }
@@ -52,7 +51,10 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
         setPlayer(player);
       },
       onTimeUpdate: (position) => {
-        setBeat(player.findBeat(position) ?? undefined);
+        if (!player.video.findPhrase(position + 100)) {
+          setPhrase(undefined);
+        }
+        setBeat(player.findBeat(position + 100) ?? undefined);
       },
       onPlay: () => setIsPlay(true),
       onPause: () => setIsPlay(false),
