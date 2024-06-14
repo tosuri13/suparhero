@@ -22,8 +22,9 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
   const [beat, setBeat] = useState<IBeat | undefined>(undefined);
   const [phrase, setPhrase] = useState<IPhrase | undefined>(undefined);
   const [isPlay, setIsPlay] = useState<boolean>(false);
-
   const mediaElementRef = useRef(null);
+
+  const delay = 100;
 
   useEffect(() => {
     const player = new Player({
@@ -38,7 +39,7 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
         let phrase = player.video.firstPhrase;
         while (phrase) {
           phrase.animate = (now, unit) => {
-            if (unit.startTime <= now && unit.endTime > now) {
+            if (unit.startTime <= now && unit.endTime - delay > now) {
               setPhrase(unit);
             }
           };
@@ -51,10 +52,10 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
         setPlayer(player);
       },
       onTimeUpdate: (position) => {
-        if (!player.video.findPhrase(position + 100)) {
+        if (!player.video.findPhrase(position + delay)) {
           setPhrase(undefined);
         }
-        setBeat(player.findBeat(position + 100) ?? undefined);
+        setBeat(player.findBeat(position + delay) ?? undefined);
       },
       onPlay: () => setIsPlay(true),
       onPause: () => setIsPlay(false),

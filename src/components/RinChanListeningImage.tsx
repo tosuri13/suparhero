@@ -15,7 +15,7 @@ export const RinChanListeningImage = ({
   const controls = useAnimationControls();
 
   useEffect(() => {
-    if (!phrase && !prevPhrase && beat) {
+    if (prevPhrase && beat) {
       void controls.start(
         { y: [8, 0] },
         { duration: beat.duration / 5000, ease: "easeOut" },
