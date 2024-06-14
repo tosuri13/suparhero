@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { MusicContext } from "@/components/MusicProvider";
+import { usePrevious } from "@/hooks/usePrevious";
 
 export const RinChanListeningImage = ({
   className = "",
@@ -10,10 +11,11 @@ export const RinChanListeningImage = ({
   className?: string;
 }) => {
   const { beat, phrase } = useContext(MusicContext);
+  const prevPhrase = usePrevious(phrase);
   const controls = useAnimationControls();
 
   useEffect(() => {
-    if (!phrase && beat) {
+    if (!phrase && !prevPhrase && beat) {
       void controls.start(
         { y: [8, 0] },
         { duration: beat.duration / 5000, ease: "easeOut" },
