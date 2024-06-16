@@ -3,6 +3,7 @@ import "@/app/globals.css";
 import type { Metadata } from "next";
 import { RocknRoll_One } from "next/font/google";
 
+import { JudgeProvider } from "@/components/JudgeProvider";
 import { MusicProvider } from "@/components/MusicProvider";
 
 export const metadata: Metadata = {
@@ -25,7 +26,9 @@ export default function AppLayout({
     <html lang="jp" className={`${rocknroll_one.variable}`}>
       <body>
         <MusicProvider>
-          <div className="h-svh w-full overflow-hidden">{children}</div>
+          <JudgeProvider>
+            <div className="h-svh w-full overflow-hidden">{children}</div>
+          </JudgeProvider>
         </MusicProvider>
       </body>
     </html>
