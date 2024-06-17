@@ -50,9 +50,11 @@ export const phraseToSuparLyrics = (
       }
     }
 
+    const isClickable = Object.keys(synonymsDict).includes(word.text);
     suparLyrics.push({
       body: word.text,
-      isClickable: Object.keys(synonymsDict).includes(word.text),
+      isClickable: isClickable,
+      isFalse: isClickable ? Math.random() > 0.5 : false,
     });
 
     if (isSpaceNeeded) {
