@@ -1,6 +1,6 @@
 import { IPhrase } from "textalive-app-api";
 
-import { synonymsDict } from "@/configs/synonymsDict";
+import { incorrectsDict } from "@/configs/incorrectsDict";
 import { SuparLyric } from "@/types/SuparLyric";
 
 export const phraseToSuparLyrics = (
@@ -50,7 +50,7 @@ export const phraseToSuparLyrics = (
       }
     }
 
-    const isClickable = Object.keys(synonymsDict).includes(word.text);
+    const isClickable = Object.keys(incorrectsDict).includes(word.text);
     suparLyrics.push({
       body: word.text,
       isClickable: isClickable,
