@@ -4,6 +4,7 @@ import { useContext } from "react";
 
 import { LyricBoard } from "@/components/LyricBoard";
 import { MusicContext } from "@/components/MusicProvider";
+import { ReactionImage } from "@/components/ReactionImage";
 import { RenkyunSingingImage } from "@/components/RenKyunSingingImage";
 import { RinChanListeningImage } from "@/components/RinChanListeningImage";
 
@@ -27,6 +28,7 @@ export default function AppPage() {
       <h1 className="text-[32px]" onClick={() => handleClick()}>
         SUPARHERO
       </h1>
+      <ReactionImage className="absolute left-[24%] top-[16%] w-[24%]" />
       <RinChanListeningImage className="absolute -left-[16%] bottom-[8%] w-[64%]" />
       <RenkyunSingingImage className="absolute -right-[16%] bottom-[8%] w-[64%]" />
       <LyricBoard className="z-10 h-[30%]" />
