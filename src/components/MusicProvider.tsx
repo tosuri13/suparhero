@@ -3,11 +3,14 @@
 import { createContext, ReactNode, useEffect, useRef, useState } from "react";
 import { IBeat, IPhrase, Player, PlayerListener } from "textalive-app-api";
 
+import { emotionsDict } from "@/configs/emotionsDict";
+
 export type MusicType = {
   player: Player | undefined;
   beat: IBeat | undefined;
   isPlay: boolean;
   phrase: IPhrase | undefined;
+  emotion: "HAPPY" | "SAD" | "NEUTRAL";
 };
 
 export const MusicContext = createContext<MusicType>({
@@ -15,13 +18,17 @@ export const MusicContext = createContext<MusicType>({
   beat: undefined,
   isPlay: false,
   phrase: undefined,
+  emotion: "NEUTRAL",
 });
 
 export const MusicProvider = ({ children }: { children: ReactNode }) => {
   const [player, setPlayer] = useState<Player | undefined>(undefined);
   const [beat, setBeat] = useState<IBeat | undefined>(undefined);
-  const [phrase, setPhrase] = useState<IPhrase | undefined>(undefined);
   const [isPlay, setIsPlay] = useState<boolean>(false);
+  const [phrase, setPhrase] = useState<IPhrase | undefined>(undefined);
+  const [emotion, setEmotion] = useState<"HAPPY" | "SAD" | "NEUTRAL">(
+    "NEUTRAL",
+  );
   const mediaElementRef = useRef(null);
 
   const delay = 100;
@@ -37,16 +44,23 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
     const playerListener: PlayerListener = {
       onTimerReady: () => {
         let phrase = player.video.firstPhrase;
+        let count = 0;
+
         while (phrase) {
+          const emotion = emotionsDict[count];
           phrase.animate = (now, unit) => {
             if (unit.startTime <= now && unit.endTime - delay > now) {
               setPhrase(unit);
+              setEmotion(emotion);
             }
           };
+
           if (phrase.next === null) {
             break;
           }
+
           phrase = phrase.next;
+          count += 1;
         }
 
         setPlayer(player);
@@ -74,7 +88,7 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <MusicContext.Provider value={{ player, beat, isPlay, phrase }}>
+    <MusicContext.Provider value={{ player, beat, isPlay, phrase, emotion }}>
       <div className="hidden" ref={mediaElementRef} />
       {children}
     </MusicContext.Provider>

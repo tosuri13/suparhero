@@ -1,5 +1,5 @@
 import { motion, useAnimationControls } from "framer-motion";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { JudgesContext } from "@/components/JudgesProvider";
@@ -10,6 +10,7 @@ export const RinChanListeningImage = ({
 }: {
   className?: string;
 }) => {
+  const [imageSrc, setImagesrc] = useState("/rinchan-default-image.png");
   const { beat } = useContext(MusicContext);
   const { judges } = useContext(JudgesContext);
   const controls = useAnimationControls();
@@ -23,9 +24,26 @@ export const RinChanListeningImage = ({
     }
   }, [judges]);
 
+  useEffect(() => {
+    if (judges.length === 0) {
+      return;
+    }
+
+    setImagesrc(
+      judges[judges.length - 1].every((judge) => !judge)
+        ? "/rinchan-good-reaction-image.png"
+        : "/rinchan-bad-reaction-image.png",
+    );
+    const timer = setTimeout(() => {
+      setImagesrc("/rinchan-default-image.png");
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, [judges]);
+
   return (
     <motion.div animate={controls} className={twMerge("", className)}>
-      <img alt="リンちゃんが聞いている画像" src="/rinchan-listening.png" />
+      <img alt="可愛いリンちゃんの画像" src={imageSrc} />
     </motion.div>
   );
 };
