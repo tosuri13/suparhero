@@ -51,7 +51,7 @@ export const LyricBoard = ({ className = "" }: { className?: string }) => {
           );
         } else {
           return (
-            <p key={index} className="text-[32px]">
+            <p key={index} className="text-[32px] font-bold">
               {suparLyric.body}
             </p>
           );

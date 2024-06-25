@@ -1,14 +1,14 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
 import { incorrectsDict } from "@/configs/incorrectsDict";
-import { SuparLyric } from "@/types/SuparLyric";
+import { SuparLyricType } from "@/types/SuparLyricType";
 
 export const ClickableSuparLyric = ({
   suparLyric,
   judgeIndex,
   setJudge,
 }: {
-  suparLyric: SuparLyric;
+  suparLyric: SuparLyricType;
   judgeIndex: number;
   setJudge: Dispatch<SetStateAction<boolean[]>>;
 }) => {
@@ -16,7 +16,7 @@ export const ClickableSuparLyric = ({
 
   return (
     <p
-      className={`text-[32px] ${isClicked ? "text-gray-600" : "text-red-600"}`}
+      className={`text-[32px] font-bold ${isClicked ? "text-gray-600" : "text-red-600"}`}
       onClick={() => {
         if (!isClicked) {
           setIsClicked(true);
@@ -34,7 +34,10 @@ export const ClickableSuparLyric = ({
   );
 };
 
-const getLyricBody = (suparLyric: SuparLyric, isClicked: boolean): string => {
+const getLyricBody = (
+  suparLyric: SuparLyricType,
+  isClicked: boolean,
+): string => {
   if (suparLyric.isFalse && !isClicked) {
     const incorrects = incorrectsDict[suparLyric.body];
     const randomIndex = Math.floor(Math.random() * incorrects.length);

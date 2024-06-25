@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-rocknroll-one)"],
+        sans: ["var(--font-zen-maru-gothic)"],
       },
     },
   },

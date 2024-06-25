@@ -1,12 +1,12 @@
 import { IPhrase } from "textalive-app-api";
 
 import { incorrectsDict } from "@/configs/incorrectsDict";
-import { SuparLyric } from "@/types/SuparLyric";
+import { SuparLyricType } from "@/types/SuparLyricType";
 
 export const phraseToSuparLyrics = (
   phrase: IPhrase,
-): (SuparLyric | undefined)[] => {
-  let suparLyrics: (SuparLyric | undefined)[] = [];
+): (SuparLyricType | undefined)[] => {
+  let suparLyrics: (SuparLyricType | undefined)[] = [];
 
   for (const word of phrase.children) {
     let isSpaceNeeded = false;
