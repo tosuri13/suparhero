@@ -2,8 +2,7 @@ import { motion, useAnimationControls } from "framer-motion";
 import { useContext, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { MusicContext } from "@/components/MusicProvider";
-import { EmotionType } from "@/types/EmotionType";
+import { EmotionType, MusicContext } from "@/components/MusicProvider";
 
 const getSrcImagefromEmotion = (emotion: EmotionType) => {
   switch (emotion) {

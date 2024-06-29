@@ -57,13 +57,18 @@ export const LyricBoard = ({ className = "" }: { className?: string }) => {
           );
         }
       } else {
-        return <span key={index} className="inline-block w-[8px]" />;
+        return <span key={index} className="inline-block w-2" />;
       }
     });
   }, [suparLyrics]);
 
   return (
-    <div className={twMerge("w-full bg-white p-[24px]", className)}>
+    <div
+      className={twMerge(
+        "bg-background-secondary border-border-primary w-full border-t-8 px-6 py-4",
+        className,
+      )}
+    >
       <div className="flex flex-row flex-wrap items-start">{lyrics}</div>
     </div>
   );

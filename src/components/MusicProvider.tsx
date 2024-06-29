@@ -10,8 +10,9 @@ export type MusicType = {
   beat: IBeat | undefined;
   isPlay: boolean;
   phrase: IPhrase | undefined;
-  emotion: "HAPPY" | "SAD" | "NEUTRAL";
+  emotion: EmotionType;
 };
+export type EmotionType = "HAPPY" | "SAD" | "NEUTRAL";
 
 export const MusicContext = createContext<MusicType>({
   player: undefined,
@@ -26,9 +27,7 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
   const [beat, setBeat] = useState<IBeat | undefined>(undefined);
   const [isPlay, setIsPlay] = useState<boolean>(false);
   const [phrase, setPhrase] = useState<IPhrase | undefined>(undefined);
-  const [emotion, setEmotion] = useState<"HAPPY" | "SAD" | "NEUTRAL">(
-    "NEUTRAL",
-  );
+  const [emotion, setEmotion] = useState<EmotionType>("NEUTRAL");
   const mediaElementRef = useRef(null);
 
   const delay = 100;

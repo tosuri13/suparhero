@@ -27,7 +27,11 @@ export default function AppLayout({
       <body>
         <TanstackQueryProvider>
           <MusicProvider>
-            <div className="h-svh w-full overflow-hidden">{children}</div>
+            <div className="bg-background-secondary flex h-svh w-full justify-center overflow-hidden">
+              <div className="bg-background-primary h-full w-full max-w-md">
+                {children}
+              </div>
+            </div>
           </MusicProvider>
         </TanstackQueryProvider>
       </body>

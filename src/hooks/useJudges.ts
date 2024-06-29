@@ -8,6 +8,16 @@ export const useJudges = () => {
   });
 };
 
+export const useClearJudges = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async () => {
+      await queryClient.setQueryData(["judges"], []);
+    },
+  });
+};
+
 export const useUpdateJudges = () => {
   const queryClient = useQueryClient();
 
