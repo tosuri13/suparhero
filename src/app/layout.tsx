@@ -3,8 +3,8 @@ import "@/app/globals.css";
 import type { Metadata } from "next";
 import { RocknRoll_One } from "next/font/google";
 
-import { JudgesProvider } from "@/components/JudgesProvider";
 import { MusicProvider } from "@/components/MusicProvider";
+import { TanstackQueryProvider } from "@/components/TanstackQueryProvider";
 
 export const metadata: Metadata = {
   title: "SUPARHERO",
@@ -25,11 +25,11 @@ export default function AppLayout({
   return (
     <html lang="jp" className={`${rocknRollOne.variable}`}>
       <body>
-        <MusicProvider>
-          <JudgesProvider>
+        <TanstackQueryProvider>
+          <MusicProvider>
             <div className="h-svh w-full overflow-hidden">{children}</div>
-          </JudgesProvider>
-        </MusicProvider>
+          </MusicProvider>
+        </TanstackQueryProvider>
       </body>
     </html>
   );

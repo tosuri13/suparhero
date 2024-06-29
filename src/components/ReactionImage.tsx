@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { JudgesContext } from "@/components/JudgesProvider";
+import { useJudges } from "@/hooks/useJudges";
 
 export const ReactionImage = ({ className = "" }: { className?: string }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const { judges } = useContext(JudgesContext);
+  const { data: judges } = useJudges();
 
   useEffect(() => {
     if (judges.length === 0) {

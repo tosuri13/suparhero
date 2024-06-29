@@ -2,8 +2,8 @@ import { motion, useAnimationControls } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { JudgesContext } from "@/components/JudgesProvider";
 import { MusicContext } from "@/components/MusicProvider";
+import { useJudges } from "@/hooks/useJudges";
 
 export const RinChanListeningImage = ({
   className = "",
@@ -12,7 +12,7 @@ export const RinChanListeningImage = ({
 }) => {
   const [imageSrc, setImagesrc] = useState("/rinchan-default-image.png");
   const { beat } = useContext(MusicContext);
-  const { judges } = useContext(JudgesContext);
+  const { data: judges } = useJudges();
   const controls = useAnimationControls();
 
   useEffect(() => {

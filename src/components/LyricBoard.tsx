@@ -2,22 +2,16 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { ClickableSuparLyric } from "@/components/ClickableSuparLyric";
-import { JudgesContext } from "@/components/JudgesProvider";
 import { MusicContext } from "@/components/MusicProvider";
+import { useUpdateJudges } from "@/hooks/useJudges";
 import { usePrevious } from "@/hooks/usePrevious";
 import { phraseToSuparLyrics } from "@/utils/phraseToSuparLyrics";
 
 export const LyricBoard = ({ className = "" }: { className?: string }) => {
   const [judge, setJudge] = useState<boolean[]>([]);
   const { phrase } = useContext(MusicContext);
-  const { setJudges } = useContext(JudgesContext);
+  const { mutate: updateJudges } = useUpdateJudges();
   const prevPhrase = usePrevious(phrase);
-
-  useEffect(() => {
-    if (prevPhrase && setJudges) {
-      setJudges((prev) => [...prev, judge]);
-    }
-  }, [phrase]);
 
   const suparLyrics = useMemo(
     () => (phrase ? phraseToSuparLyrics(phrase) : []),
@@ -31,6 +25,12 @@ export const LyricBoard = ({ className = "" }: { className?: string }) => {
         .map((suparLyric) => suparLyric!.isFalse),
     );
   }, [suparLyrics]);
+
+  useEffect(() => {
+    if (prevPhrase) {
+      updateJudges(judge);
+    }
+  }, [phrase]);
 
   const lyrics = useMemo(() => {
     let judgeIndexCount = 0;

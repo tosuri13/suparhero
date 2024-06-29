@@ -1,15 +1,21 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { LyricBoard } from "@/components/LyricBoard";
 import { MusicContext } from "@/components/MusicProvider";
 import { ReactionImage } from "@/components/ReactionImage";
 import { RenkyunSingingImage } from "@/components/RenKyunSingingImage";
 import { RinChanListeningImage } from "@/components/RinChanListeningImage";
+import { useJudges } from "@/hooks/useJudges";
 
 export default function AppPage() {
   const { player } = useContext(MusicContext);
+  const { data: judges } = useJudges();
+
+  useEffect(() => {
+    console.log(judges);
+  }, [judges]);
 
   if (!player) {
     return (
