@@ -24,7 +24,7 @@ export default function AppPage() {
   };
 
   return (
-    <div className="relative flex h-full flex-col items-center justify-between bg-[url('/background.png')]">
+    <div className="relative flex h-full flex-col items-center justify-between bg-cover">
       <h1 className="text-[32px]" onClick={() => handleClick()}>
         SUPARHERO
       </h1>

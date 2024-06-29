@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 
 import type { Metadata } from "next";
-import { Zen_Maru_Gothic } from "next/font/google";
+import { RocknRoll_One } from "next/font/google";
 
 import { JudgesProvider } from "@/components/JudgesProvider";
 import { MusicProvider } from "@/components/MusicProvider";
@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   description: "Lyric Application for MAGICAL MIRAI Programming Contest 2024",
 };
 
-const zen_maru_gothic = Zen_Maru_Gothic({
+const rocknRollOne = RocknRoll_One({
   subsets: ["latin"],
-  variable: "--font-zen-maru-gothic",
-  weight: ["300", "400", "500", "700", "900"],
+  variable: "--font-rocknroll-one",
+  weight: ["400"],
 });
 
 export default function AppLayout({
@@ -23,7 +23,7 @@ export default function AppLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="jp" className={`${zen_maru_gothic.variable}`}>
+    <html lang="jp" className={`${rocknRollOne.variable}`}>
       <body>
         <MusicProvider>
           <JudgesProvider>
