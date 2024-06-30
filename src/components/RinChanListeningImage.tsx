@@ -26,6 +26,7 @@ export const RinChanListeningImage = ({
 
   useEffect(() => {
     if (judges.length === 0) {
+      setImagesrc("/rinchan-default-image.png");
       return;
     }
 

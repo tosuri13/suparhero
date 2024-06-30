@@ -23,7 +23,7 @@ export const ReactionImage = ({ className = "" }: { className?: string }) => {
 
   return (
     <>
-      {isVisible && (
+      {judges.length !== 0 && isVisible && (
         <motion.div
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: -20 }}

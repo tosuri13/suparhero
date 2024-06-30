@@ -1,33 +1,46 @@
 "use client";
 
-import { createContext, ReactNode, useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { IBeat, IPhrase, Player, PlayerListener } from "textalive-app-api";
 
 import { emotionsDict } from "@/configs/emotionsDict";
 
 export type MusicType = {
-  player: Player | undefined;
   beat: IBeat | undefined;
-  isPlay: boolean;
-  phrase: IPhrase | undefined;
   emotion: EmotionType;
+  phrase: IPhrase | undefined;
+  player: Player | undefined;
+  setBeat: Dispatch<SetStateAction<IBeat | undefined>> | undefined;
+  setEmotion: Dispatch<SetStateAction<EmotionType>> | undefined;
+  setPhrase: Dispatch<SetStateAction<IPhrase | undefined>> | undefined;
+  setPlayer: Dispatch<SetStateAction<Player | undefined>> | undefined;
 };
 export type EmotionType = "HAPPY" | "SAD" | "NEUTRAL";
 
 export const MusicContext = createContext<MusicType>({
-  player: undefined,
   beat: undefined,
-  isPlay: false,
-  phrase: undefined,
   emotion: "NEUTRAL",
+  phrase: undefined,
+  player: undefined,
+  setBeat: undefined,
+  setEmotion: undefined,
+  setPhrase: undefined,
+  setPlayer: undefined,
 });
 
 export const MusicProvider = ({ children }: { children: ReactNode }) => {
-  const [player, setPlayer] = useState<Player | undefined>(undefined);
   const [beat, setBeat] = useState<IBeat | undefined>(undefined);
-  const [isPlay, setIsPlay] = useState<boolean>(false);
-  const [phrase, setPhrase] = useState<IPhrase | undefined>(undefined);
   const [emotion, setEmotion] = useState<EmotionType>("NEUTRAL");
+  const [phrase, setPhrase] = useState<IPhrase | undefined>(undefined);
+  const [player, setPlayer] = useState<Player | undefined>(undefined);
   const mediaElementRef = useRef(null);
 
   const delay = 100;
@@ -70,8 +83,6 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
         }
         setBeat(player.findBeat(position + delay) ?? undefined);
       },
-      onPlay: () => setIsPlay(true),
-      onPause: () => setIsPlay(false),
     };
 
     void player.createFromSongUrl("https://piapro.jp/t/hZ35/20240130103028", {
@@ -87,7 +98,18 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <MusicContext.Provider value={{ player, beat, isPlay, phrase, emotion }}>
+    <MusicContext.Provider
+      value={{
+        beat,
+        emotion,
+        phrase,
+        player,
+        setBeat,
+        setEmotion,
+        setPhrase,
+        setPlayer,
+      }}
+    >
       <div className="hidden" ref={mediaElementRef} />
       {children}
     </MusicContext.Provider>

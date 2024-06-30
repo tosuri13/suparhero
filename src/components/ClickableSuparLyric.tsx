@@ -16,7 +16,7 @@ export const ClickableSuparLyric = ({
 
   return (
     <p
-      className={`text-[32px] ${isClicked ? "text-gray-600" : "text-text-clickable"}`}
+      className={`cursor-pointer text-[32px] ${isClicked ? "text-text-clicked" : "text-text-clickable"}`}
       onClick={() => {
         if (!isClicked) {
           setIsClicked(true);

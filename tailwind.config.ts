@@ -15,6 +15,7 @@ const config: Config = {
         background: {
           primary: "#FFB800",
           secondary: "#FFFFFF",
+          pause: "rgba(63, 63, 63, 0.5)",
         },
         border: {
           primary: "#000000",
@@ -23,6 +24,7 @@ const config: Config = {
           primary: "#FFFFFF",
           secondary: "#FFB800",
           clickable: "#CA3103",
+          clicked: "#4B5563",
         },
       },
       fontFamily: {

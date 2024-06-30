@@ -1,12 +1,12 @@
 export const LoadingScreen = () => {
   return (
-    <div className="bg-background-secondary flex h-full w-full flex-col items-center justify-center gap-2">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-background-secondary">
       <img
-        className="animate-spin-slow h-16 w-16"
+        className="h-16 w-16 animate-spin-slow"
         alt="ローディングのアイコン"
         src="/star.png"
       />
-      <p className="text-text-secondary text-[32px]">Wait for the Hero...</p>
+      <p className="text-[32px] text-text-secondary">Wait for the Hero...</p>
     </div>
   );
 };

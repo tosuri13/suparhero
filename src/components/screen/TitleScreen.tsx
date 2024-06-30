@@ -12,7 +12,7 @@ export const TitleScreen = () => {
           src="/title-logo.png"
         />
         <p
-          className="text-text-primary text-[32px] hover:cursor-pointer"
+          className="cursor-pointer text-[32px] text-text-primary"
           onClick={() => setScreen("PLAY")}
         >
           Tap to Start
