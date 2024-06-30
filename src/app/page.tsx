@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { MusicContext } from "@/components/MusicProvider";
 import { LoadingScreen } from "@/components/screen/LoadingScreen";
 import { PlayScreen } from "@/components/screen/PlayScreen";
+import { ResultScreen } from "@/components/screen/ResultScreen";
 import { TitleScreen } from "@/components/screen/TitleScreen";
 import { useScreen } from "@/hooks/useScreen";
 
@@ -25,6 +26,6 @@ export default function AppPage() {
   }
 
   if (screen === "RESULT") {
-    return <TitleScreen />;
+    return <ResultScreen />;
   }
 }

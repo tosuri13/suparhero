@@ -16,10 +16,14 @@ import { emotionsDict } from "@/configs/emotionsDict";
 export type MusicType = {
   beat: IBeat | undefined;
   emotion: EmotionType;
+  isFinish: boolean;
+  isPlay: boolean;
   phrase: IPhrase | undefined;
   player: Player | undefined;
   setBeat: Dispatch<SetStateAction<IBeat | undefined>> | undefined;
   setEmotion: Dispatch<SetStateAction<EmotionType>> | undefined;
+  setIsFinish: Dispatch<SetStateAction<boolean>> | undefined;
+  setIsPlay: Dispatch<SetStateAction<boolean>> | undefined;
   setPhrase: Dispatch<SetStateAction<IPhrase | undefined>> | undefined;
   setPlayer: Dispatch<SetStateAction<Player | undefined>> | undefined;
 };
@@ -28,10 +32,14 @@ export type EmotionType = "HAPPY" | "SAD" | "NEUTRAL";
 export const MusicContext = createContext<MusicType>({
   beat: undefined,
   emotion: "NEUTRAL",
+  isFinish: false,
+  isPlay: false,
   phrase: undefined,
   player: undefined,
   setBeat: undefined,
   setEmotion: undefined,
+  setIsPlay: undefined,
+  setIsFinish: undefined,
   setPhrase: undefined,
   setPlayer: undefined,
 });
@@ -39,6 +47,8 @@ export const MusicContext = createContext<MusicType>({
 export const MusicProvider = ({ children }: { children: ReactNode }) => {
   const [beat, setBeat] = useState<IBeat | undefined>(undefined);
   const [emotion, setEmotion] = useState<EmotionType>("NEUTRAL");
+  const [isFinish, setIsFinish] = useState<boolean>(false);
+  const [isPlay, setIsPlay] = useState<boolean>(false);
   const [phrase, setPhrase] = useState<IPhrase | undefined>(undefined);
   const [player, setPlayer] = useState<Player | undefined>(undefined);
   const mediaElementRef = useRef(null);
@@ -81,8 +91,13 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
         if (!player.video.findPhrase(position + delay)) {
           setPhrase(undefined);
         }
+        if (player.video.duration - 2000 <= position) {
+          setIsFinish(true);
+        }
         setBeat(player.findBeat(position + delay) ?? undefined);
       },
+      onPlay: () => setIsPlay(true),
+      onStop: () => setIsPlay(false),
     };
 
     void player.createFromSongUrl("https://piapro.jp/t/hZ35/20240130103028", {
@@ -102,10 +117,14 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
       value={{
         beat,
         emotion,
+        isFinish,
+        isPlay,
         phrase,
         player,
         setBeat,
         setEmotion,
+        setIsFinish,
+        setIsPlay,
         setPhrase,
         setPlayer,
       }}

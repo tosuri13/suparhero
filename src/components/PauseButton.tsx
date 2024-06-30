@@ -1,20 +1,14 @@
-import { Dispatch, SetStateAction, useContext } from "react";
+import { useContext } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { MusicContext } from "@/components/MusicProvider";
 
-export const PauseButton = ({
-  className = "",
-  setIsPause,
-}: {
-  className?: string;
-  setIsPause: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const { player } = useContext(MusicContext);
+export const PauseButton = ({ className = "" }: { className?: string }) => {
+  const { player, setIsPlay } = useContext(MusicContext);
 
   const handleClick = () => {
-    if (player) {
-      setIsPause(true);
+    if (player && setIsPlay) {
+      setIsPlay(false);
       player.requestPause();
     }
   };
@@ -27,8 +21,8 @@ export const PauseButton = ({
       )}
       onClick={handleClick}
     >
-      <div className="bg-background-secondary h-full w-2" />
-      <div className="bg-background-secondary h-full w-2" />
+      <div className="h-full w-2 bg-background-secondary" />
+      <div className="h-full w-2 bg-background-secondary" />
     </div>
   );
 };

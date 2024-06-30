@@ -1,31 +1,26 @@
-import { Dispatch, SetStateAction, useContext } from "react";
+import { useContext } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { MusicContext } from "@/components/MusicProvider";
 import { useSetScreen } from "@/hooks/useScreen";
 
-export const PauseScreen = ({
-  className = "",
-  setIsPause,
-}: {
-  className?: string;
-  setIsPause: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const { player, setBeat, setPhrase } = useContext(MusicContext);
+export const PauseScreen = ({ className = "" }: { className?: string }) => {
+  const { player, setBeat, setIsFinish, setIsPlay, setPhrase } =
+    useContext(MusicContext);
   const { mutate: setScreen } = useSetScreen();
 
   const handleRestartClick = () => {
-    if (player) {
-      setIsPause(false);
+    if (player && setIsPlay) {
       player.requestPlay();
     }
   };
 
   const handleBackToTitleClick = () => {
-    if (player && setBeat && setPhrase) {
-      setIsPause(false);
+    if (player && setBeat && setIsFinish && setIsPlay && setPhrase) {
       setBeat(undefined);
       setPhrase(undefined);
+      setIsPlay(false);
+      setIsFinish(false);
       setScreen("TITLE");
       player.requestStop();
     }
