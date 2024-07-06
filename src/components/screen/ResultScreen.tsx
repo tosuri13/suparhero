@@ -2,8 +2,28 @@ import { motion } from "framer-motion";
 import { useContext, useMemo } from "react";
 
 import { MusicContext } from "@/components/MusicProvider";
+import { SuparBanner } from "@/components/SuparBanner";
+import { SuparButton } from "@/components/SuparButton";
+import {
+  SuparRankImage,
+  SuparRankImageVariant,
+} from "@/components/SuparRankImage";
 import { useJudges } from "@/hooks/useJudges";
 import { useSetScreen } from "@/hooks/useScreen";
+
+import { SuparCommentImage } from "../SuparCommentImage";
+
+const getRank = (accuracy: number): SuparRankImageVariant => {
+  if (accuracy <= 50.0) {
+    return "C";
+  } else if (accuracy < 75.0) {
+    return "B";
+  } else if (accuracy < 90.0) {
+    return "A";
+  } else {
+    return "S";
+  }
+};
 
 export const ResultScreen = () => {
   const { player, setBeat, setIsFinish, setIsPlay, setPhrase } =
@@ -42,48 +62,35 @@ export const ResultScreen = () => {
       transition={{ duration: 0.5 }}
       className="relative flex h-full items-center justify-center overflow-hidden"
     >
-      <div className="flex flex-col items-center gap-8 pb-[320px]">
-        <p className="text-[32px] text-text-primary">Result</p>
-        <div className="flex flex-col items-center gap-[18px]">
-          <p className="text-[24px] text-text-primary">{`Accuracy: ${accuracy}%`}</p>
-          <div className="flex flex-row items-center gap-3">
-            {Array.from({ length: getStarsCount(accuracy) }).map((_, index) => (
-              <img
-                key={index}
-                className="h-16 w-16"
-                alt="評価用の星"
-                src="/star-primary.png"
-              />
-            ))}
+      <div className="flex flex-col items-center justify-center gap-[8px]">
+        <SuparBanner variant="RESULT" />
+        <div className="relative flex h-[171px] w-[326px] flex-row items-center">
+          <img className="absolute" alt="スコアボード" src="/score-board.png" />
+          <div className="relative flex h-full w-full flex-row justify-center">
+            <p className="absolute left-[38px] top-[68px] text-[32px]">{`${accuracy}%`}</p>
+            <SuparRankImage
+              variant={getRank(accuracy)}
+              className="absolute left-[188px] top-[54px]"
+            />
           </div>
         </div>
-        <p
-          className="cursor-pointer text-[24px] text-text-primary"
+        <SuparButton
+          className="mt-[16px]"
+          variant="BACKTOTITLE"
           onClick={handleBackToTitleClick}
-        >
-          Back to Title
-        </p>
+        />
+        <div className="relative h-[280px] w-full">
+          <SuparCommentImage
+            variant={getRank(accuracy)}
+            className="absolute left-[12px] top-[48px]"
+          />
+          <img
+            alt="レンきゅんが褒めてくれる画像"
+            src="/renkyun-happy-image.png"
+            className="absolute -right-[8%] top-0 w-[240px]"
+          />
+        </div>
       </div>
-      <img
-        alt="レンきゅんからのコメント(えらいっ!!)"
-        src="/comment-tmp.png"
-        className="absolute left-[2%] top-[60%] w-[56%]"
-      />
-      <img
-        alt="レンきゅんが褒めてくれる画像"
-        src="/renkyun-happy-image.png"
-        className="absolute -bottom-[12%] -right-[12%] w-[60%]"
-      />
     </motion.div>
   );
-};
-
-const getStarsCount = (accuracy: number): number => {
-  if (accuracy <= 50.0) {
-    return 1;
-  } else if (accuracy <= 80.0) {
-    return 2;
-  } else {
-    return 3;
-  }
 };

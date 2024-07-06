@@ -35,9 +35,9 @@ export const SuparReactionImage = ({
           className={twMerge("h-[102px] w-[104px]", className)}
         >
           {judges[judges.length - 1].every((judge) => !judge) ? (
-            <img alt="良い反応" src="/reaction/good.png" />
+            <img alt="良い反応" src="/supar-reaction/good.png" />
           ) : (
-            <img alt="悪い反応" src="/reaction/bad.png" />
+            <img alt="悪い反応" src="/supar-reaction/bad.png" />
           )}
         </motion.div>
       )}

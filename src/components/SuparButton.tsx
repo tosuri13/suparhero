@@ -1,7 +1,11 @@
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-type SuparButtonVariant = "START" | "HOWTOPLAY" | "BACKTOTITLE" | "RESTART";
+export type SuparButtonVariant =
+  | "START"
+  | "HOWTOPLAY"
+  | "BACKTOTITLE"
+  | "RESTART";
 
 const getImageProps = (
   variant: SuparButtonVariant,

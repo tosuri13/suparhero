@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-type SuparBannerVariant = "HOWTOPLAY" | "PAUSE" | "RESULT";
+export type SuparBannerVariant = "HOWTOPLAY" | "PAUSE" | "RESULT";
 
 const getImageProps = (
   variant: SuparBannerVariant,
