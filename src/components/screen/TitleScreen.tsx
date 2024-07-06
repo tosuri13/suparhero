@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 
+import { SuparButton } from "@/components/SuparButton";
 import { useSetScreen } from "@/hooks/useScreen";
 
 export const TitleScreen = () => {
@@ -19,12 +20,10 @@ export const TitleScreen = () => {
           alt="SUPAEHEROのタイトルロゴ"
           src="/title-logo.png"
         />
-        <p
-          className="cursor-pointer text-[32px] text-text-primary"
-          onClick={() => setScreen("PLAY")}
-        >
-          Tap to Start
-        </p>
+        <div className="flex flex-col items-center gap-[24px]">
+          <SuparButton variant="START" onClick={() => setScreen("PLAY")} />
+          <SuparButton variant="HOWTOPLAY" />
+        </div>
       </div>
     </motion.div>
   );
