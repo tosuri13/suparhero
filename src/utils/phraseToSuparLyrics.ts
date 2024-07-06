@@ -51,6 +51,7 @@ export const phraseToSuparLyrics = (
     }
 
     const isClickable = Object.keys(incorrectsDict).includes(word.text);
+
     suparLyrics.push({
       body: word.text,
       isClickable: isClickable,
