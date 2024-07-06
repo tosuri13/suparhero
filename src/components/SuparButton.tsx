@@ -1,12 +1,7 @@
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-type SuparButtonVariant =
-  | "START"
-  | "HOWTOPLAY"
-  | "BACKTOTITLE"
-  | "PAUSE"
-  | "RESTART";
+type SuparButtonVariant = "START" | "HOWTOPLAY" | "BACKTOTITLE" | "RESTART";
 
 const getImageProps = (
   variant: SuparButtonVariant,
@@ -31,13 +26,6 @@ const getImageProps = (
     imageProps = {
       alt: "タイトルに戻るボタン",
       src: "/supar-button/back-to-title.png",
-    };
-  }
-
-  if (variant === "PAUSE") {
-    imageProps = {
-      alt: "ポーズボタン",
-      src: "/supar-button/pause.png",
     };
   }
 

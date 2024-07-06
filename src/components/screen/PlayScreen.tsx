@@ -4,10 +4,10 @@ import { useContext, useEffect, useState } from "react";
 import { LyricBoard } from "@/components/LyricBoard";
 import { MusicContext } from "@/components/MusicProvider";
 import { PauseButton } from "@/components/PauseButton";
-import { ReactionImage } from "@/components/ReactionImage";
 import { RenkyunSingingImage } from "@/components/RenKyunSingingImage";
 import { RinChanListeningImage } from "@/components/RinChanListeningImage";
 import { PauseScreen } from "@/components/screen/PauseScreen";
+import { SuparReactionImage } from "@/components/SuparReactionImage";
 import { useClearJudges } from "@/hooks/useJudges";
 import { useSetScreen } from "@/hooks/useScreen";
 
@@ -48,10 +48,10 @@ export const PlayScreen = () => {
         <PauseScreen className="absolute left-0 top-0 z-20" />
       )}
       <PauseButton className="absolute right-3 top-3" />
-      <ReactionImage className="absolute left-[24%] top-[12%] z-10 w-[30%]" />
+      <SuparReactionImage className="absolute left-[24%] top-[12%] z-10" />
       <RinChanListeningImage className="absolute -left-[14%] bottom-[20%] w-[64%]" />
       <RenkyunSingingImage className="absolute -right-[12%] bottom-[20%] w-[64%]" />
-      <LyricBoard className="z-10 h-[28%]" />
+      <LyricBoard />
     </motion.div>
   );
 };

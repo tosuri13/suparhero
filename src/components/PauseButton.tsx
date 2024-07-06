@@ -14,15 +14,14 @@ export const PauseButton = ({ className = "" }: { className?: string }) => {
   };
 
   return (
-    <div
+    <button
       className={twMerge(
-        "flex h-6 w-6 cursor-pointer flex-row justify-between",
+        "flex h-[56px] w-[56px] cursor-pointer items-center justify-center",
         className,
       )}
       onClick={handleClick}
     >
-      <div className="h-full w-2 bg-background-secondary" />
-      <div className="h-full w-2 bg-background-secondary" />
-    </div>
+      <img alt="ポーズボタン" src="/pause-button.png" />
+    </button>
   );
 };

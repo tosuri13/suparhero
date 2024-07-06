@@ -65,11 +65,18 @@ export const LyricBoard = ({ className = "" }: { className?: string }) => {
   return (
     <div
       className={twMerge(
-        "bg-background-secondary border-border-primary w-full border-t-8 px-6 py-4",
+        "relative h-[240px] min-h-[240px] w-full px-[32px] pb-[12px] pt-[58px]",
         className,
       )}
     >
-      <div className="flex flex-row flex-wrap items-start">{lyrics}</div>
+      <img
+        alt="歌詞ボード"
+        src="/lyric-board-background.png"
+        className="absolute bottom-0 left-0 h-[240px]"
+      />
+      <div className="relative flex flex-row flex-wrap items-start">
+        {lyrics}
+      </div>
     </div>
   );
 };

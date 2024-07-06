@@ -4,7 +4,11 @@ import { twMerge } from "tailwind-merge";
 
 import { useJudges } from "@/hooks/useJudges";
 
-export const ReactionImage = ({ className = "" }: { className?: string }) => {
+export const SuparReactionImage = ({
+  className = "",
+}: {
+  className?: string;
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const { data: judges } = useJudges();
 
@@ -16,7 +20,7 @@ export const ReactionImage = ({ className = "" }: { className?: string }) => {
     setIsVisible(true);
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 300);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [judges]);
@@ -27,14 +31,13 @@ export const ReactionImage = ({ className = "" }: { className?: string }) => {
         <motion.div
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: -20 }}
-          exit={{ opacity: 0, y: 0 }}
           transition={{ duration: 0.1 }}
-          className={twMerge("", className)}
+          className={twMerge("h-[102px] w-[104px]", className)}
         >
           {judges[judges.length - 1].every((judge) => !judge) ? (
-            <img alt="良い反応" src="/good-reaction.png" />
+            <img alt="良い反応" src="/reaction/good.png" />
           ) : (
-            <img alt="悪い反応" src="/bad-reaction.png" />
+            <img alt="悪い反応" src="/reaction/bad.png" />
           )}
         </motion.div>
       )}

@@ -6,14 +6,18 @@ export const LoadingScreen = () => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="flex h-full w-full flex-col items-center justify-center gap-2 bg-background-secondary"
+      className="flex h-full w-full flex-col items-center justify-center gap-[4px] bg-background-secondary"
     >
       <img
-        className="animate-spin-loading h-16 w-16"
-        alt="ローディングのアイコン"
-        src="/star-secondary.png"
+        className="h-16 w-16 animate-spin-loading"
+        alt="星の画像"
+        src="/supar-star.png"
       />
-      <p className="text-[32px] text-text-secondary">Wait for the Hero...</p>
+      <img
+        className="h-[54px] w-[327px]"
+        alt="Waiting for HERO..."
+        src="/loading-message.png"
+      />
     </motion.div>
   );
 };
