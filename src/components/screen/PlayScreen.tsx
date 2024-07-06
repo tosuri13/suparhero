@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 
 import { LyricBoard } from "@/components/LyricBoard";
@@ -36,7 +37,13 @@ export const PlayScreen = () => {
   }, [isFinish]);
 
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-end overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="relative flex h-full w-full flex-col items-center justify-end overflow-hidden"
+    >
       {!isPlay && !isWaiting && (
         <PauseScreen className="absolute left-0 top-0 z-20" />
       )}
@@ -45,6 +52,6 @@ export const PlayScreen = () => {
       <RinChanListeningImage className="absolute -left-[14%] bottom-[20%] w-[64%]" />
       <RenkyunSingingImage className="absolute -right-[12%] bottom-[20%] w-[64%]" />
       <LyricBoard className="z-10 h-[28%]" />
-    </div>
+    </motion.div>
   );
 };

@@ -27,9 +27,11 @@ export default function AppLayout({
       <body>
         <TanstackQueryProvider>
           <MusicProvider>
-            <div className="bg-background-secondary flex h-svh w-full justify-center overflow-hidden">
-              <div className="bg-background-primary h-full w-full max-w-md">
-                {children}
+            <div className="flex h-svh w-full justify-center overflow-hidden bg-[url('/app-background.png')] bg-cover">
+              <div className="h-full w-full max-w-md bg-background-primary">
+                <div className="h-full w-full bg-[url('/game-background.png')] bg-cover">
+                  {children}
+                </div>
               </div>
             </div>
           </MusicProvider>

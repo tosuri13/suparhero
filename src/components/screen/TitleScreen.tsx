@@ -1,10 +1,18 @@
+import { motion } from "framer-motion";
+
 import { useSetScreen } from "@/hooks/useScreen";
 
 export const TitleScreen = () => {
   const { mutate: setScreen } = useSetScreen();
 
   return (
-    <div className="flex h-full items-center justify-center">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex h-full items-center justify-center"
+    >
       <div className="flex flex-col items-center gap-[100px]">
         <img
           className="max-w-full"
@@ -18,6 +26,6 @@ export const TitleScreen = () => {
           Tap to Start
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };

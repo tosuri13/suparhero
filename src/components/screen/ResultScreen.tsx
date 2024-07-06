@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useContext, useMemo } from "react";
 
 import { MusicContext } from "@/components/MusicProvider";
@@ -34,7 +35,13 @@ export const ResultScreen = () => {
   };
 
   return (
-    <div className="relative flex h-full items-center justify-center overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="relative flex h-full items-center justify-center overflow-hidden"
+    >
       <div className="flex flex-col items-center gap-8 pb-[320px]">
         <p className="text-[32px] text-text-primary">Result</p>
         <div className="flex flex-col items-center gap-[18px]">
@@ -67,7 +74,7 @@ export const ResultScreen = () => {
         src="/renkyun-happy-image.png"
         className="absolute -bottom-[12%] -right-[12%] w-[60%]"
       />
-    </div>
+    </motion.div>
   );
 };
 
