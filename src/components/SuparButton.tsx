@@ -6,37 +6,28 @@ type SuparButtonVariant = "START" | "HOWTOPLAY" | "BACKTOTITLE" | "RESTART";
 const getImageProps = (
   variant: SuparButtonVariant,
 ): { alt: string; src: string } => {
-  let imageProps = { alt: "", src: "" };
-
-  if (variant === "START") {
-    imageProps = {
-      alt: "スタートボタン",
-      src: "/supar-button/start.png",
-    };
+  switch (variant) {
+    case "START":
+      return {
+        alt: "スタートボタン",
+        src: "/supar-button/start.png",
+      };
+    case "HOWTOPLAY":
+      return {
+        alt: "チュートリアルボタン",
+        src: "/supar-button/how-to-play.png",
+      };
+    case "BACKTOTITLE":
+      return {
+        alt: "タイトルに戻るボタン",
+        src: "/supar-button/back-to-title.png",
+      };
+    case "RESTART":
+      return {
+        alt: "リスタートボタン",
+        src: "/supar-button/restart.png",
+      };
   }
-
-  if (variant === "HOWTOPLAY") {
-    imageProps = {
-      alt: "チュートリアルボタン",
-      src: "/supar-button/how-to-play.png",
-    };
-  }
-
-  if (variant === "BACKTOTITLE") {
-    imageProps = {
-      alt: "タイトルに戻るボタン",
-      src: "/supar-button/back-to-title.png",
-    };
-  }
-
-  if (variant === "RESTART") {
-    imageProps = {
-      alt: "ボタン",
-      src: "/supar-button/restart.png",
-    };
-  }
-
-  return imageProps;
 };
 
 export const SuparButton = ({

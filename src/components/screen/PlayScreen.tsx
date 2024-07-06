@@ -47,7 +47,7 @@ export const PlayScreen = () => {
       {!isPlay && !isWaiting && (
         <PauseScreen className="absolute left-0 top-0 z-20" />
       )}
-      <PauseButton className="absolute right-3 top-3" />
+      <PauseButton className="absolute right-3 top-3 z-10" />
       <SuparReactionImage className="absolute left-[24%] top-[12%] z-10" />
       <RinChanListeningImage className="absolute -left-[14%] bottom-[20%] w-[64%]" />
       <RenkyunSingingImage className="absolute -right-[12%] bottom-[20%] w-[64%]" />

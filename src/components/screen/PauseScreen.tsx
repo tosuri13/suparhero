@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { MusicContext } from "@/components/MusicProvider";
+import { SuparBanner } from "@/components/SuparBanner";
+import { SuparButton } from "@/components/SuparButton";
 import { useSetScreen } from "@/hooks/useScreen";
 
 export const PauseScreen = ({ className = "" }: { className?: string }) => {
@@ -29,25 +31,15 @@ export const PauseScreen = ({ className = "" }: { className?: string }) => {
   return (
     <div
       className={twMerge(
-        "flex h-full w-full items-center justify-center bg-background-pause",
+        "flex h-full w-full flex-col items-center justify-center bg-background-pause",
         className,
       )}
     >
-      <div className="flex flex-col items-center justify-center gap-8">
-        <p className="text-[32px] text-text-primary">Pause</p>
-        <div className="flex flex-col items-center justify-center gap-1">
-          <p
-            className="cursor-pointer text-[24px] text-text-primary"
-            onClick={handleRestartClick}
-          >
-            Restart
-          </p>
-          <p
-            className="cursor-pointer text-[24px] text-text-primary"
-            onClick={handleBackToTitleClick}
-          >
-            Back to Title
-          </p>
+      <div className="flex flex-col items-center justify-center gap-[80px]">
+        <SuparBanner variant="PAUSE" />
+        <div className="flex flex-col items-center justify-center gap-[24px]">
+          <SuparButton variant="RESTART" onClick={handleRestartClick} />
+          <SuparButton variant="BACKTOTITLE" onClick={handleBackToTitleClick} />
         </div>
       </div>
     </div>
