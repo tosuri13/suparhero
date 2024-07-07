@@ -20,9 +20,12 @@ export const TitleScreen = () => {
           alt="SUPAEHEROのタイトルロゴ"
           src="/title-logo.png"
         />
-        <div className="flex flex-col items-center gap-[24px]">
+        <div className="flex flex-col items-center gap-[16px]">
           <SuparButton variant="START" onClick={() => setScreen("PLAY")} />
-          <SuparButton variant="HOWTOPLAY" />
+          <SuparButton
+            variant="HOWTOPLAY"
+            onClick={() => setScreen("TUTORIAL")}
+          />
         </div>
       </div>
     </motion.div>

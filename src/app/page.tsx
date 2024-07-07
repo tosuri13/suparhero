@@ -9,6 +9,7 @@ import { LoadingScreen } from "@/components/screen/LoadingScreen";
 import { PlayScreen } from "@/components/screen/PlayScreen";
 import { ResultScreen } from "@/components/screen/ResultScreen";
 import { TitleScreen } from "@/components/screen/TitleScreen";
+import { TutorialScreen } from "@/components/screen/TutorialScreen";
 import { ScreenType, useScreen } from "@/hooks/useScreen";
 
 const renderScreen = (player: Player | undefined, screen: ScreenType) => {
@@ -19,6 +20,8 @@ const renderScreen = (player: Player | undefined, screen: ScreenType) => {
   switch (screen) {
     case "TITLE":
       return <TitleScreen key="title" />;
+    case "TUTORIAL":
+      return <TutorialScreen key="tutorial" />;
     case "PLAY":
       return <PlayScreen key="play" />;
     case "RESULT":

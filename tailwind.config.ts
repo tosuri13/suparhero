@@ -19,10 +19,12 @@ const config: Config = {
         },
         border: {
           primary: "#000000",
+          secondary: "#ECB600",
         },
         text: {
           primary: "#FFFFFF",
           secondary: "#FFB800",
+          tertiary: "#000000",
           clickable: "#CA3103",
           clicked: "#4B5563",
         },

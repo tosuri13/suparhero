@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-export type ScreenType = "TITLE" | "PLAY" | "RESULT";
+export type ScreenType = "TITLE" | "TUTORIAL" | "PLAY" | "RESULT";
 
 export const useScreen = () => {
   return useQuery({
