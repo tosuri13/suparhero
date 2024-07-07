@@ -1,3 +1,4 @@
+import { motion, MotionProps } from "framer-motion";
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -34,22 +35,47 @@ const getImageProps = (
   }
 };
 
+export type SuparButtonProps = {
+  variant: SuparButtonVariant;
+  className?: string;
+  animationDisable?: boolean;
+  enterAnimationDelay?: number;
+  exitAnimationDelay?: number;
+} & HTMLAttributes<HTMLButtonElement> &
+  MotionProps;
+
 export const SuparButton = ({
   variant,
   className = "",
+  animationDisable = false,
+  enterAnimationDelay = 0.0,
+  exitAnimationDelay = 0.0,
   ...props
-}: {
-  variant: SuparButtonVariant;
-  className?: string;
-} & HTMLAttributes<HTMLButtonElement>) => {
+}: SuparButtonProps) => {
   const { alt, src } = getImageProps(variant);
 
+  const initialMotion = { opacity: 0, x: 48 };
+  const animateMotion = {
+    opacity: 1,
+    x: 0,
+    transition: { delay: enterAnimationDelay },
+  };
+  const exitMotion = {
+    opacity: 0,
+    x: -48,
+    transition: { delay: exitAnimationDelay },
+  };
+
   return (
-    <button
+    <motion.button
+      initial={!animationDisable ? initialMotion : {}}
+      animate={!animationDisable ? animateMotion : {}}
+      exit={!animationDisable ? exitMotion : {}}
+      transition={{ duration: 0.2 }}
       className={twMerge("h-[66px] w-[250px] cursor-pointer", className)}
       {...props}
     >
       <img alt={alt} src={src} />
-    </button>
+    </motion.button>
   );
 };

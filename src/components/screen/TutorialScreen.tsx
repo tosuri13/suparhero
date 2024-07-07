@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
 import { SuparBanner } from "@/components/SuparBanner";
@@ -39,6 +39,7 @@ const pages = [
 
 export const TutorialScreen = () => {
   const [pageIndex, setPageIndex] = useState(0);
+  const [directionFactor, setDirectionFactor] = useState(0);
   const { mutate: setScreen } = useSetScreen();
 
   return (
@@ -57,20 +58,35 @@ export const TutorialScreen = () => {
               className="w-[48px] cursor-pointer"
               alt="前のページへ"
               src="/left-arrow.png"
-              onClick={() => setPageIndex((prev) => prev - 1)}
+              onClick={() => {
+                setDirectionFactor(-1);
+                setPageIndex((prev) => prev - 1);
+              }}
             />
           ) : (
             <span className="w-[48px]" />
           )}
-          <div className="border-border-secondary flex w-[212px] border-[4px] bg-background-secondary p-[2px]">
-            <img alt="チュートリアルの画像" src={pages[pageIndex].src} />
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={pageIndex}
+              initial={{ opacity: 0, x: directionFactor * 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -directionFactor * 24 }}
+              transition={{ duration: 0.1 }}
+              className="border-border-secondary flex w-[212px] border-[4px] bg-background-secondary p-[2px]"
+            >
+              <img alt="チュートリアルの画像" src={pages[pageIndex].src} />
+            </motion.div>
+          </AnimatePresence>
           {pageIndex !== pages.length - 1 ? (
             <img
               className="w-[48px] cursor-pointer"
               alt="次のページへ"
               src="/right-arrow.png"
-              onClick={() => setPageIndex((prev) => prev + 1)}
+              onClick={() => {
+                setDirectionFactor(1);
+                setPageIndex((prev) => prev + 1);
+              }}
             />
           ) : (
             <span className="w-[48px]" />
@@ -82,7 +98,7 @@ export const TutorialScreen = () => {
             alt="説明ボード"
             src="/description-board.png"
           />
-          <p className="text-text-tertiary relative mx-[20px] my-[16px] text-[14px]">
+          <p className="text-text-tertiary relative mx-[20px] my-[14px] text-[14px]">
             {pages[pageIndex].description}
           </p>
         </div>
