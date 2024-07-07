@@ -54,7 +54,7 @@ export const SuparButton = ({
 }: SuparButtonProps) => {
   const { alt, src } = getImageProps(variant);
 
-  const initialMotion = { opacity: 0, x: 48 };
+  const initialMotion = { opacity: 0, x: 24 };
   const animateMotion = {
     opacity: 1,
     x: 0,
@@ -62,7 +62,7 @@ export const SuparButton = ({
   };
   const exitMotion = {
     opacity: 0,
-    x: -48,
+    x: -24,
     transition: { delay: exitAnimationDelay },
   };
 
