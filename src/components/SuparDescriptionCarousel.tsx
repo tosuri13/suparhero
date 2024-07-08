@@ -105,6 +105,7 @@ export const SuparDescriptionCarousel = ({
               src={carouselItems[carouselIndex].src}
               width={200}
               height={288}
+              priority={true}
             />
           </motion.div>
         </AnimatePresence>
