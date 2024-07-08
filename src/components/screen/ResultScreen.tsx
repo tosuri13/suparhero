@@ -1,5 +1,6 @@
-import { useMemo } from "react";
+import { useContext, useEffect, useMemo } from "react";
 
+import { MusicContext } from "@/components/MusicProvider";
 import { RenKyunCommentImage } from "@/components/RenKyunCommentImage";
 import { SuparBanner } from "@/components/SuparBanner";
 import { SuparButton } from "@/components/SuparButton";
@@ -10,8 +11,16 @@ import { useSetScreen } from "@/hooks/useScreen";
 import { getRank } from "@/utils/getRank";
 
 export const ResultScreen = () => {
+  const { player, setIsPlay } = useContext(MusicContext);
   const { data: judges } = useJudges();
   const { mutate: setScreen } = useSetScreen();
+
+  useEffect(() => {
+    if (player && setIsPlay) {
+      player.requestStop();
+      setIsPlay(false);
+    }
+  }, []);
 
   const accuracy = useMemo(() => {
     if (judges.length !== 0) {

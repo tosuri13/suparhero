@@ -11,7 +11,7 @@ import { useSetScreen } from "@/hooks/useScreen";
 
 export const PlayScreen = () => {
   const [isWaiting, setIsWaiting] = useState(true);
-  const { player, isFinish, isPlay, setIsPlay } = useContext(MusicContext);
+  const { player, isFinish, isPlay } = useContext(MusicContext);
   const { mutate: setScreen } = useSetScreen();
 
   useEffect(() => {
@@ -26,9 +26,7 @@ export const PlayScreen = () => {
   }, [player]);
 
   useEffect(() => {
-    if (player && isFinish && setIsPlay) {
-      player.requestStop();
-      setIsPlay(false);
+    if (player && isFinish) {
       setScreen("RESULT");
     }
   }, [isFinish]);
