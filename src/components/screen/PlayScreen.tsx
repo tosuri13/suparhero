@@ -7,22 +7,17 @@ import { PauseScreen } from "@/components/screen/PauseScreen";
 import { SuparLyricBoard } from "@/components/SuparLyricBoard";
 import { SuparPauseButton } from "@/components/SuparPauseButton";
 import { SuparReactionImage } from "@/components/SuparReactionImage";
-import { useClearJudges } from "@/hooks/useJudges";
 import { useSetScreen } from "@/hooks/useScreen";
 
 export const PlayScreen = () => {
   const [isWaiting, setIsWaiting] = useState(true);
-  const { player, isFinish, isPlay } = useContext(MusicContext);
-  const { mutate: clearJudges } = useClearJudges();
+  const { player, isFinish, isPlay, setIsPlay } = useContext(MusicContext);
   const { mutate: setScreen } = useSetScreen();
 
   useEffect(() => {
     if (player) {
-      clearJudges();
-
       const timer = setTimeout(() => {
         setIsWaiting(false);
-        player.requestMediaSeek(0);
         player.requestPlay();
       }, 1000);
 
@@ -31,7 +26,9 @@ export const PlayScreen = () => {
   }, [player]);
 
   useEffect(() => {
-    if (isFinish) {
+    if (player && isFinish && setIsPlay) {
+      player.requestStop();
+      setIsPlay(false);
       setScreen("RESULT");
     }
   }, [isFinish]);
@@ -44,22 +41,26 @@ export const PlayScreen = () => {
       <SuparPauseButton
         key="supar-pause-button"
         className="absolute right-3 top-3 z-10"
+        animationDisable={!isPlay}
         exitAnimationDelay={0.3}
       />
       <SuparReactionImage className="absolute left-[24%] top-[12%] z-10" />
       <RinChanListeningImage
         key="rinchan-listening-image"
         className="absolute -left-[14%] bottom-[20%] w-[64%]"
+        animationDisable={!isPlay}
         enterAnimationDelay={0.2}
         exitAnimationDelay={0.1}
       />
       <RenkyunSingingImage
         key="renkyun-singing-image"
         className="absolute -right-[12%] bottom-[20%] w-[64%]"
+        animationDisable={!isPlay}
         enterAnimationDelay={0.3}
       />
       <SuparLyricBoard
         key="supar-lyric-board"
+        animationDisable={!isPlay}
         enterAnimationDelay={0.1}
         exitAnimationDelay={0.2}
       />

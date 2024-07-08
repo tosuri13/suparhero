@@ -1,9 +1,28 @@
+import { useContext } from "react";
+
+import { MusicContext } from "@/components/MusicProvider";
 import { SuparButton } from "@/components/SuparButton";
 import { SuparTitleLogoImage } from "@/components/SuparTitleLogoImage";
+import { useClearJudges } from "@/hooks/useJudges";
 import { useSetScreen } from "@/hooks/useScreen";
 
 export const TitleScreen = () => {
+  const { player, setBeat, setIsFinish, setIsPlay, setPhrase } =
+    useContext(MusicContext);
+  const { mutate: clearJudges } = useClearJudges();
   const { mutate: setScreen } = useSetScreen();
+
+  const handleStartClick = () => {
+    if (player && setBeat && setIsFinish && setIsPlay && setPhrase) {
+      player.requestMediaSeek(0);
+      setBeat(undefined);
+      setPhrase(undefined);
+      setIsFinish(false);
+      setIsPlay(true);
+    }
+    clearJudges();
+    setScreen("PLAY");
+  };
 
   return (
     <div className="flex h-full w-full items-center justify-center">
@@ -12,7 +31,7 @@ export const TitleScreen = () => {
         <div className="flex flex-col items-center gap-[16px]">
           <SuparButton
             variant="START"
-            onClick={() => setScreen("PLAY")}
+            onClick={handleStartClick}
             enterAnimationDelay={0.3}
             exitAnimationDelay={0.1}
           />

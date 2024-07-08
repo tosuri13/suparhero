@@ -7,24 +7,21 @@ import { SuparButton } from "@/components/SuparButton";
 import { useSetScreen } from "@/hooks/useScreen";
 
 export const PauseScreen = ({ className = "" }: { className?: string }) => {
-  const { player, setBeat, setIsFinish, setIsPlay, setPhrase } =
-    useContext(MusicContext);
+  const { player, setIsPlay } = useContext(MusicContext);
   const { mutate: setScreen } = useSetScreen();
 
   const handleRestartClick = () => {
     if (player && setIsPlay) {
+      setIsPlay(true);
       player.requestPlay();
     }
   };
 
   const handleBackToTitleClick = () => {
-    if (player && setBeat && setIsFinish && setIsPlay && setPhrase) {
-      setBeat(undefined);
-      setPhrase(undefined);
-      setIsPlay(false);
-      setIsFinish(false);
-      setScreen("TITLE");
+    if (player) {
       player.requestStop();
+      player.requestMediaSeek(0);
+      setScreen("TITLE");
     }
   };
 

@@ -1,6 +1,5 @@
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 
-import { MusicContext } from "@/components/MusicProvider";
 import { RenKyunCommentImage } from "@/components/RenKyunCommentImage";
 import { SuparBanner } from "@/components/SuparBanner";
 import { SuparButton } from "@/components/SuparButton";
@@ -11,8 +10,6 @@ import { useSetScreen } from "@/hooks/useScreen";
 import { getRank } from "@/utils/getRank";
 
 export const ResultScreen = () => {
-  const { player, setBeat, setIsFinish, setIsPlay, setPhrase } =
-    useContext(MusicContext);
   const { data: judges } = useJudges();
   const { mutate: setScreen } = useSetScreen();
 
@@ -29,14 +26,7 @@ export const ResultScreen = () => {
   }, [judges]);
 
   const handleBackToTitleClick = () => {
-    if (player && setBeat && setIsFinish && setIsPlay && setPhrase) {
-      setBeat(undefined);
-      setPhrase(undefined);
-      setIsPlay(false);
-      setIsFinish(false);
-      setScreen("TITLE");
-      player.requestStop();
-    }
+    setScreen("TITLE");
   };
 
   return (
