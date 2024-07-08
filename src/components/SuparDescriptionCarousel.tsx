@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, MotionProps } from "framer-motion";
-import { HTMLAttributes, useEffect, useState } from "react";
+import Image from "next-export-optimize-images/image";
+import { HTMLAttributes, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 const carouselItems = [
@@ -64,13 +65,6 @@ export const SuparDescriptionCarousel = ({
     transition: { delay: exitAnimationDelay },
   };
 
-  useEffect(() => {
-    carouselItems.forEach((item) => {
-      const img = new Image();
-      img.src = item.src;
-    });
-  }, []);
-
   return (
     <motion.div
       initial={!animationDisable ? initialMotion : {}}
@@ -104,11 +98,13 @@ export const SuparDescriptionCarousel = ({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -directionFactor * 24 }}
             transition={{ duration: 0.1 }}
-            className="flex w-[212px] border-[4px] border-border-secondary bg-background-secondary p-[2px]"
+            className="flex border-[4px] border-border-secondary bg-background-secondary p-[2px]"
           >
-            <img
+            <Image
               alt="チュートリアルの画像"
               src={carouselItems[carouselIndex].src}
+              width={200}
+              height={288}
             />
           </motion.div>
         </AnimatePresence>
