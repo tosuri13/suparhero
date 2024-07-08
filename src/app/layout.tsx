@@ -16,6 +16,7 @@ const rocknRollOne = RocknRoll_One({
   subsets: ["latin"],
   variable: "--font-rocknroll-one",
   weight: ["400"],
+  preload: true,
 });
 
 export default function AppLayout({
