@@ -11,7 +11,7 @@
 
 <br>
 
-<div align="center" style="display: flex; justify-content: center; gap: 24px">
+<div align="center" style="display: flex; justify-content: center; gap: 16px;">
   <img src="documents/images/sample-1.png" width="160px">
   <img src="documents/images/sample-2.png" width="160px">
   <img src="documents/images/sample-3.png" width="160px">
@@ -37,7 +37,7 @@
 - 間違えている歌詞が1つでもタップされなかった場合: `不正解`
 - 正しい歌詞を1つでもタップしてしまった場合: `不正解`
 
-<div align="center" style="display: flex; justify-content: center; gap: 24px">
+<div align="center" style="display: flex; justify-content: center; gap: 16px;">
   <img src="public/tutorial/page-1.png" width="160px">
   <img src="public/tutorial/page-2.png" width="160px">
   <img src="public/tutorial/page-3.png" width="160px">

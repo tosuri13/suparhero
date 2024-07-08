@@ -10,6 +10,8 @@ export const phraseToSuparLyrics = (
 
   for (const word of phrase.children) {
     let isSpaceNeeded = false;
+    let isIgnore = false;
+    let isSuperhero = false;
 
     // 次のトークンが存在する場合
     if (word.next !== null) {
@@ -25,6 +27,10 @@ export const phraseToSuparLyrics = (
           else if (word.text === ")") {
             isSpaceNeeded = true;
           }
+          // 現在のトークンが「“」か「”」の場合
+          else if (word.text === "“" || word.text === "”") {
+            isIgnore = true;
+          }
         }
         // 現在のトークンが記号以外の場合
         else if (word.pos !== "S") {
@@ -38,8 +44,12 @@ export const phraseToSuparLyrics = (
       else if (word.language === "en") {
         // 次のトークンが記号の場合
         if (word.next.pos === "S") {
+          // 現在のトークンがSUPERHEROの場合
+          if (word.text === "SUPERHERO") {
+            isSuperhero = true;
+          }
           // 次のトークンが以下のいずれの記号でもなかった場合
-          if (!["’", "”", "!!", ")"].includes(word.next.text)) {
+          else if (!["’", "!!", ")"].includes(word.next.text)) {
             isSpaceNeeded = true;
           }
         }
@@ -50,13 +60,16 @@ export const phraseToSuparLyrics = (
       }
     }
 
-    const isClickable = Object.keys(incorrectsDict).includes(word.text);
+    const suparLyricBody = isSuperhero ? "“SUPERHERO”" : word.text;
+    const isClickable = Object.keys(incorrectsDict).includes(suparLyricBody);
 
-    suparLyrics.push({
-      body: word.text,
-      isClickable: isClickable,
-      isFalse: isClickable ? Math.random() > 0.5 : false,
-    });
+    if (!isIgnore) {
+      suparLyrics.push({
+        body: suparLyricBody,
+        isClickable: isClickable,
+        isFalse: isClickable ? Math.random() > 0.5 : false,
+      });
+    }
 
     if (isSpaceNeeded) {
       suparLyrics.push(undefined);
