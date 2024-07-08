@@ -30,26 +30,28 @@ export const SuparLyricClickable = ({
   const [isClicked, setIsClicked] = useState(false);
 
   return (
-    <p
-      className={`relative cursor-pointer text-[32px] ${isClicked ? "text-text-clicked" : "text-text-clickable"}`}
-      onClick={() => {
-        if (!isClicked) {
-          setIsClicked(true);
-          setJudge((prevJudge) => {
-            const newJudge = [...prevJudge];
-            newJudge[judgeIndex] = !newJudge[judgeIndex];
+    <div className="relative h-fit w-fit">
+      <p
+        className={`relative cursor-pointer text-[32px] ${isClicked ? "text-text-clicked" : "text-text-clickable"}`}
+        onClick={() => {
+          if (!isClicked) {
+            setIsClicked(true);
+            setJudge((prevJudge) => {
+              const newJudge = [...prevJudge];
+              newJudge[judgeIndex] = !newJudge[judgeIndex];
 
-            return newJudge;
-          });
-        }
-      }}
-    >
-      {getLyricBody(suparLyric, isClicked)}
+              return newJudge;
+            });
+          }
+        }}
+      >
+        {getLyricBody(suparLyric, isClicked)}
+      </p>
       {isClicked && (
         <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center">
           <SuparEffectImage variant={suparLyric.isFalse ? "GOOD" : "BAD"} />
         </div>
       )}
-    </p>
+    </div>
   );
 };

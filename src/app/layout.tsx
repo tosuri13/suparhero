@@ -9,6 +9,7 @@ import { TanstackQueryProvider } from "@/components/TanstackQueryProvider";
 export const metadata: Metadata = {
   title: "SUPARHERO",
   description: "Lyric Application for MAGICAL MIRAI Programming Contest 2024",
+  icons: [{ rel: "icon", url: "/loading/star.png" }],
 };
 
 const rocknRollOne = RocknRoll_One({

@@ -22,6 +22,7 @@ export const PlayScreen = () => {
 
       const timer = setTimeout(() => {
         setIsWaiting(false);
+        player.requestMediaSeek(0);
         player.requestPlay();
       }, 1000);
 
