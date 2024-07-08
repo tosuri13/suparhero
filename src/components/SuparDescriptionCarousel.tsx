@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, MotionProps } from "framer-motion";
-import { HTMLAttributes, useState } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 const carouselItems = [
@@ -63,6 +63,13 @@ export const SuparDescriptionCarousel = ({
     x: -48,
     transition: { delay: exitAnimationDelay },
   };
+
+  useEffect(() => {
+    carouselItems.forEach((item) => {
+      const img = new Image();
+      img.src = item.src;
+    });
+  }, []);
 
   return (
     <motion.div
