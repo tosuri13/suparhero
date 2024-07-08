@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
+import { SuparEffectImage } from "@/components/SuparEffectImage";
 import { incorrectsDict } from "@/configs/incorrectsDict";
 import { SuparLyricType } from "@/types/SuparLyricType";
 
@@ -30,7 +31,7 @@ export const SuparLyricClickable = ({
 
   return (
     <p
-      className={`cursor-pointer text-[32px] ${isClicked ? "text-text-clicked" : "text-text-clickable"}`}
+      className={`relative cursor-pointer text-[32px] ${isClicked ? "text-text-clicked" : "text-text-clickable"}`}
       onClick={() => {
         if (!isClicked) {
           setIsClicked(true);
@@ -44,6 +45,11 @@ export const SuparLyricClickable = ({
       }}
     >
       {getLyricBody(suparLyric, isClicked)}
+      {isClicked && (
+        <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center">
+          <SuparEffectImage variant={suparLyric.isFalse ? "GOOD" : "BAD"} />
+        </div>
+      )}
     </p>
   );
 };
