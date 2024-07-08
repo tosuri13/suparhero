@@ -19,7 +19,7 @@
 
 ## 🎉 Overview
 
-「**SUPARHERO**」は、[TextAlive App API](https://developer.textalive.jp/)を利用したリリックWebアプリケーションです。
+「**SUPARHERO**」は、[TextAlive App API](https://developer.textalive.jp/)を利用したリリックゲームアプリケーションです。
 
 「**[初音ミク「マジカルミライ 2024」プログラミング・コンテスト](https://magicalmirai.com/2024/procon)**」への応募作品であり、楽曲にはめろくる様の「[SUPERHERO](https://youtu.be/EWGe3KRc144?si=NThdqauxb9UbFPFJ)」を使用しています。
 
@@ -27,22 +27,56 @@
 
 - https://suparhero.vercel.app
 
+## 🤔 How to play?
+
+本アプリケーションは、「SUPERHERO」の楽曲に合わせて、赤い文字で表示されている歌詞の中から、間違えている歌詞を見つけて修正していくゲームです。
+
+回答が正しいかどうかは歌詞のセクションごとに、以下のパターンで評価されます。
+
+- 間違えている歌詞を全てタップできた場合: `正解`
+- 間違えている歌詞が1つでもタップされなかった場合: `不正解`
+- 正しい歌詞を1つでもタップしてしまった場合: `不正解`
+
+<div align="center" style="display: flex; justify-content: center; gap: 16px">
+  <img src="public/tutorial/page-1.png" width="160px">
+  <img src="public/tutorial/page-2.png" width="160px">
+  <img src="public/tutorial/page-3.png" width="160px">
+</div>
+
+<br>
+
+最終的なスコアは、全セクションのうち正解したセクションがいくつあったかという正答率で表され、正答率によってランクが決定します。
+
+- 正答率が50%未満: `Cランク`
+- 正答率が50%以上-75%未満: `Bランク`
+- 正答率が75%以上-90%未満: `Aランク`
+- 正答率が90%以上: `Sランク`
+
+<div align="center">
+  <img src="documents/images/ranks.png" width="480px">
+</div>
+
+<br>
+
+> [!TIP]
+> 「SUPARHERO」の遊び方は本アプリケーションの「How to play」からも確認することができます!!
+
 ## 📚 Concept
 
 「SUPERHERO」における"**HERO**"は、レンくんが憧れた「[HERO](https://youtu.be/o4AxMk3SGUY?si=xZ5qTrWbCSxOxb3L)」に登場するような頼もしく心強い印象のヒーローとは異なり、自身の心の弱さや恐怖に立ち向かい、成長していく過程の中で見つかる"**HERO**"です。そのような楽曲の印象をそのまま感じれるようなWebアプリケーションにしようと考えました。
 
 "**HERO**"になりたい意気込みが先行する心配性な部分を「リリックのタイプミス」で表現し、ユーザはレンくんが"**HERO**"なるためのサポートをするような立ち位置でアプリケーションをデザインしています。
 
-レンくんが**本当のHERO**"(SUPERHERO)になれるよう、本アプリケーションを通じてお手伝いをしていだだけると幸いです!!
+レンくんがカッコいい”**SUPERHERO**”になれるよう、本アプリケーションを通じてお手伝いしていだだけると幸いです!!
 
 > [!NOTE]
-> 楽曲の解釈などはあくまで個人の見解です。
+> 楽曲の解釈はあくまで個人の見解です。
 
 ## 📱 System requirements
 
-MacOS、Windows、iOS、AndroidいずれのOSでも動作することを確認しています(iPadやタブレットなど端末でも動作することを確認しています)。
+推奨環境などは特にありませんが、なるべく最新のブラウザで動作させることをおすすめします。
 
-また、Chrome、Safari、Firefoxなどのブラウザごとの差異もありません。
+PCだけでなくiOSやAndroidなどのモバイル端末からも、本アプリケーションを遊んでいただくことができます。
 
 ## 🚀 Build & Deploy
 

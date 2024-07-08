@@ -1,5 +1,5 @@
 export const getRank = (accuracy: number): "C" | "B" | "A" | "S" => {
-  if (accuracy <= 50.0) {
+  if (accuracy < 50.0) {
     return "C";
   } else if (accuracy < 75.0) {
     return "B";
