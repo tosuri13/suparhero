@@ -1,29 +1,14 @@
-import { motion } from "framer-motion";
 import { useContext, useMemo } from "react";
 
 import { MusicContext } from "@/components/MusicProvider";
+import { RenKyunCommentImage } from "@/components/RenKyunCommentImage";
 import { SuparBanner } from "@/components/SuparBanner";
 import { SuparButton } from "@/components/SuparButton";
-import {
-  SuparRankImage,
-  SuparRankImageVariant,
-} from "@/components/SuparRankImage";
+import { SuparCommentImage } from "@/components/SuparCommentImage";
+import { SuparScoreBoard } from "@/components/SuparScoreBoard";
 import { useJudges } from "@/hooks/useJudges";
 import { useSetScreen } from "@/hooks/useScreen";
-
-import { SuparCommentImage } from "../SuparCommentImage";
-
-const getRank = (accuracy: number): SuparRankImageVariant => {
-  if (accuracy <= 50.0) {
-    return "C";
-  } else if (accuracy < 75.0) {
-    return "B";
-  } else if (accuracy < 90.0) {
-    return "A";
-  } else {
-    return "S";
-  }
-};
+import { getRank } from "@/utils/getRank";
 
 export const ResultScreen = () => {
   const { player, setBeat, setIsFinish, setIsPlay, setPhrase } =
@@ -55,42 +40,35 @@ export const ResultScreen = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      className="relative flex h-full items-center justify-center overflow-hidden"
-    >
+    <div className="relative flex h-full items-center justify-center overflow-hidden">
       <div className="flex flex-col items-center justify-center gap-[8px]">
         <SuparBanner variant="RESULT" />
-        <div className="relative flex h-[171px] w-[326px] flex-row items-center">
-          <img className="absolute" alt="スコアボード" src="/score-board.png" />
-          <div className="relative flex h-full w-full flex-row justify-center">
-            <p className="absolute left-[38px] top-[68px] text-[32px]">{`${accuracy}%`}</p>
-            <SuparRankImage
-              variant={getRank(accuracy)}
-              className="absolute left-[188px] top-[54px]"
-            />
-          </div>
-        </div>
+        <SuparScoreBoard
+          accuracy={accuracy}
+          enterAnimationDelay={0.1}
+          exitAnimationDelay={0.1}
+        />
         <SuparButton
           className="mt-[16px]"
           variant="BACKTOTITLE"
           onClick={handleBackToTitleClick}
+          enterAnimationDelay={0.2}
+          exitAnimationDelay={0.2}
         />
         <div className="relative h-[280px] w-full">
           <SuparCommentImage
-            variant={getRank(accuracy)}
+            rank={getRank(accuracy)}
             className="absolute left-[12px] top-[48px]"
+            enterAnimationDelay={0.8}
+            exitAnimationDelay={0.3}
           />
-          <img
-            alt="レンきゅんが褒めてくれる画像"
-            src="/renkyun/happy.png"
+          <RenKyunCommentImage
             className="absolute -right-[8%] top-0 w-[240px]"
+            enterAnimationDelay={0.3}
+            exitAnimationDelay={0.3}
           />
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };

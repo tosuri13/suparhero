@@ -1,12 +1,11 @@
+import { motion, MotionProps } from "framer-motion";
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-export type SuparRankImageVariant = "C" | "B" | "A" | "S";
+import { RankType } from "@/types/RankType";
 
-const getImageProps = (
-  variant: SuparRankImageVariant,
-): { alt: string; src: string } => {
-  switch (variant) {
+const getImageProps = (rank: RankType): { alt: string; src: string } => {
+  switch (rank) {
     case "C":
       return {
         alt: "ランクC",
@@ -30,19 +29,46 @@ const getImageProps = (
   }
 };
 
-export const SuparRankImage = ({
-  variant,
-  className = "",
-  ...props
-}: {
-  variant: SuparRankImageVariant;
+export type SuparRankImageProps = {
+  rank: RankType;
   className?: string;
-} & HTMLAttributes<HTMLDivElement>) => {
-  const { alt, src } = getImageProps(variant);
+  animationDisable?: boolean;
+  enterAnimationDelay?: number;
+  exitAnimationDelay?: number;
+} & HTMLAttributes<HTMLDivElement> &
+  MotionProps;
+
+export const SuparRankImage = ({
+  rank,
+  className = "",
+  animationDisable = false,
+  enterAnimationDelay = 0.0,
+  exitAnimationDelay = 0.0,
+  ...props
+}: SuparRankImageProps) => {
+  const { alt, src } = getImageProps(rank);
+
+  const initialMotion = { opacity: 0, scale: 1.5 };
+  const animateMotion = {
+    opacity: 1,
+    scale: 1.0,
+    transition: { delay: enterAnimationDelay },
+  };
+  const exitMotion = {
+    opacity: 0,
+    transition: { delay: exitAnimationDelay },
+  };
 
   return (
-    <div className={twMerge("h-[106px] w-[113px]", className)} {...props}>
+    <motion.div
+      initial={!animationDisable ? initialMotion : {}}
+      animate={!animationDisable ? animateMotion : {}}
+      exit={!animationDisable ? exitMotion : {}}
+      transition={{ duration: 0.2 }}
+      className={twMerge("h-[106px] w-[113px]", className)}
+      {...props}
+    >
       <img alt={alt} src={src} />
-    </div>
+    </motion.div>
   );
 };

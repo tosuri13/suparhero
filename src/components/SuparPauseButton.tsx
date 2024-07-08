@@ -53,7 +53,7 @@ export const SuparPauseButton = ({
       onClick={handleClick}
       {...props}
     >
-      <img alt="ポーズボタン" src="/pause-button.png" />
+      <img alt="ポーズボタン" src="/play/pause-button.png" />
     </motion.button>
   );
 };

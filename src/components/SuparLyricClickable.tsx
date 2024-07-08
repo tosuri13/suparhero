@@ -3,7 +3,21 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { incorrectsDict } from "@/configs/incorrectsDict";
 import { SuparLyricType } from "@/types/SuparLyricType";
 
-export const ClickableSuparLyric = ({
+const getLyricBody = (
+  suparLyric: SuparLyricType,
+  isClicked: boolean,
+): string => {
+  if (suparLyric.isFalse && !isClicked) {
+    const incorrects = incorrectsDict[suparLyric.body];
+    const randomIndex = Math.floor(Math.random() * incorrects.length);
+
+    return incorrects[randomIndex];
+  } else {
+    return suparLyric.body;
+  }
+};
+
+export const SuparLyricClickable = ({
   suparLyric,
   judgeIndex,
   setJudge,
@@ -32,18 +46,4 @@ export const ClickableSuparLyric = ({
       {getLyricBody(suparLyric, isClicked)}
     </p>
   );
-};
-
-const getLyricBody = (
-  suparLyric: SuparLyricType,
-  isClicked: boolean,
-): string => {
-  if (suparLyric.isFalse && !isClicked) {
-    const incorrects = incorrectsDict[suparLyric.body];
-    const randomIndex = Math.floor(Math.random() * incorrects.length);
-
-    return incorrects[randomIndex];
-  } else {
-    return suparLyric.body;
-  }
 };

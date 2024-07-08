@@ -74,7 +74,7 @@ export const RinChanListeningImage = ({
       {...props}
     >
       <motion.div animate={controls} className="h-full w-full">
-        <img alt="可愛いリンちゃんの画像" src={imageSrc} />
+        <img alt="歌を聞いてくれるリンちゃんの画像" src={imageSrc} />
       </motion.div>
     </motion.div>
   );

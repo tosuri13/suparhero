@@ -2,7 +2,7 @@ import { motion, MotionProps } from "framer-motion";
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-export type SuparTitleLogoImageProps = {
+export type RenKyunCommentImageProps = {
   className?: string;
   animationDisable?: boolean;
   enterAnimationDelay?: number;
@@ -10,22 +10,22 @@ export type SuparTitleLogoImageProps = {
 } & HTMLAttributes<HTMLImageElement> &
   MotionProps;
 
-export const SuparTitleLogoImage = ({
+export const RenKyunCommentImage = ({
   className = "",
   animationDisable = false,
   enterAnimationDelay = 0.0,
   exitAnimationDelay = 0.0,
   ...props
-}: SuparTitleLogoImageProps) => {
-  const initialMotion = { opacity: 0, scale: 0.5, y: 80 };
+}: RenKyunCommentImageProps) => {
+  const initialMotion = { opacity: 0, x: 24 };
   const animateMotion = {
     opacity: 1,
-    scale: 1.0,
-    y: 0,
+    x: 0,
     transition: { delay: enterAnimationDelay },
   };
   const exitMotion = {
     opacity: 0,
+    x: -24,
     transition: { delay: exitAnimationDelay },
   };
 
@@ -35,9 +35,9 @@ export const SuparTitleLogoImage = ({
       animate={!animationDisable ? animateMotion : {}}
       exit={!animationDisable ? exitMotion : {}}
       transition={{ duration: 0.2 }}
-      className={twMerge("max-w-full", className)}
-      alt="SUPAEHEROのタイトルロゴ"
-      src="/title/suparhero-logo.png"
+      className={twMerge("", className)}
+      alt="レンきゅんが褒めてくれる画像"
+      src="/renkyun/happy.png"
       {...props}
     />
   );

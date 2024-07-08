@@ -13,13 +13,14 @@ export const TitleScreen = () => {
           <SuparButton
             variant="START"
             onClick={() => setScreen("PLAY")}
-            enterAnimationDelay={0.1}
+            enterAnimationDelay={0.3}
+            exitAnimationDelay={0.1}
           />
           <SuparButton
             variant="HOWTOPLAY"
             onClick={() => setScreen("TUTORIAL")}
-            enterAnimationDelay={0.2}
-            exitAnimationDelay={0.1}
+            enterAnimationDelay={0.4}
+            exitAnimationDelay={0.2}
           />
         </div>
       </div>

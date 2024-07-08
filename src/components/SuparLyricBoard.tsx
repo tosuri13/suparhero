@@ -3,8 +3,9 @@ import { HTMLAttributes } from "react";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { ClickableSuparLyric } from "@/components/ClickableSuparLyric";
 import { MusicContext } from "@/components/MusicProvider";
+import { SuparLyricClickable } from "@/components/SuparLyricClickable";
+import { SuparLyricUnclickable } from "@/components/SuparLyricUnclickable";
 import { useUpdateJudges } from "@/hooks/useJudges";
 import { usePrevious } from "@/hooks/usePrevious";
 import { phraseToSuparLyrics } from "@/utils/phraseToSuparLyrics";
@@ -88,7 +89,7 @@ export const SuparLyricBoard = ({
           judgeIndexCount += 1;
 
           return (
-            <ClickableSuparLyric
+            <SuparLyricClickable
               key={index}
               suparLyric={suparLyric}
               judgeIndex={judgeIndex}
@@ -96,11 +97,7 @@ export const SuparLyricBoard = ({
             />
           );
         } else {
-          return (
-            <p key={index} className="text-[32px]">
-              {suparLyric.body}
-            </p>
-          );
+          return <SuparLyricUnclickable key={index} suparLyric={suparLyric} />;
         }
       } else {
         return <span key={index} className="inline-block w-2" />;
@@ -122,7 +119,7 @@ export const SuparLyricBoard = ({
     >
       <img
         alt="歌詞ボード"
-        src="/lyric-board-background.png"
+        src="/play/lyric-board.png"
         className="absolute bottom-0 left-0 h-[240px]"
       />
       <motion.div

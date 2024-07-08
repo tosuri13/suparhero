@@ -81,7 +81,7 @@ export const SuparDescriptionCarousel = ({
           <img
             className="w-[48px] cursor-pointer"
             alt="前のページへ"
-            src="/left-arrow.png"
+            src="/tutorial/left-arrow.png"
             onClick={() => {
               setDirectionFactor(-1);
               setCarouselIndex((prev) => prev - 1);
@@ -109,7 +109,7 @@ export const SuparDescriptionCarousel = ({
           <img
             className="w-[48px] cursor-pointer"
             alt="次のページへ"
-            src="/right-arrow.png"
+            src="/tutorial/right-arrow.png"
             onClick={() => {
               setDirectionFactor(1);
               setCarouselIndex((prev) => prev + 1);
@@ -123,7 +123,7 @@ export const SuparDescriptionCarousel = ({
         <img
           className="absolute"
           alt="説明ボード"
-          src="/description-board.png"
+          src="/tutorial/description-board.png"
         />
         <AnimatePresence mode="wait">
           <motion.div
