@@ -86,7 +86,7 @@ export const ResultScreen = () => {
           />
           <img
             alt="レンきゅんが褒めてくれる画像"
-            src="/renkyun-happy-image.png"
+            src="/renkyun/happy.png"
             className="absolute -right-[8%] top-0 w-[240px]"
           />
         </div>

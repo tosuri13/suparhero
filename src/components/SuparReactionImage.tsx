@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useAnimationControls } from "framer-motion";
+import { useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { useJudges } from "@/hooks/useJudges";
@@ -9,29 +9,30 @@ export const SuparReactionImage = ({
 }: {
   className?: string;
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
   const { data: judges } = useJudges();
+  const controls = useAnimationControls();
 
   useEffect(() => {
     if (judges.length === 0) {
       return;
     }
 
-    setIsVisible(true);
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 500);
-
-    return () => clearTimeout(timer);
+    void controls.start({
+      opacity: [0, 1, 1, 0],
+      y: [16, 0, 0, 16],
+      transition: {
+        ease: "linear",
+        duration: 0.5,
+        times: [0, 0.2, 0.9, 1],
+      },
+    });
   }, [judges]);
 
   return (
     <>
-      {judges.length !== 0 && isVisible && (
+      {judges.length !== 0 && (
         <motion.div
-          initial={{ opacity: 0, y: 0 }}
-          animate={{ opacity: 1, y: -20 }}
-          transition={{ duration: 0.1 }}
+          animate={controls}
           className={twMerge("h-[102px] w-[104px]", className)}
         >
           {judges[judges.length - 1].every((judge) => !judge) ? (

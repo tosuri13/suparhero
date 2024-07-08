@@ -1,3 +1,5 @@
+import { motion, MotionProps, useAnimationControls } from "framer-motion";
+import { HTMLAttributes } from "react";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -7,11 +9,38 @@ import { useUpdateJudges } from "@/hooks/useJudges";
 import { usePrevious } from "@/hooks/usePrevious";
 import { phraseToSuparLyrics } from "@/utils/phraseToSuparLyrics";
 
-export const LyricBoard = ({ className = "" }: { className?: string }) => {
+export type SuparLyricBoardProps = {
+  className?: string;
+  animationDisable?: boolean;
+  enterAnimationDelay?: number;
+  exitAnimationDelay?: number;
+} & HTMLAttributes<HTMLDivElement> &
+  MotionProps;
+
+export const SuparLyricBoard = ({
+  className = "",
+  animationDisable = false,
+  enterAnimationDelay = 0.0,
+  exitAnimationDelay = 0.0,
+  ...props
+}: SuparLyricBoardProps) => {
   const [judge, setJudge] = useState<boolean[]>([]);
-  const { phrase } = useContext(MusicContext);
+  const { isPlay, phrase } = useContext(MusicContext);
   const { mutate: updateJudges } = useUpdateJudges();
   const prevPhrase = usePrevious(phrase);
+  const controls = useAnimationControls();
+
+  const initialMotion = { opacity: 0, x: 24 };
+  const animateMotion = {
+    opacity: 1,
+    x: 0,
+    transition: { delay: enterAnimationDelay },
+  };
+  const exitMotion = {
+    opacity: 0,
+    x: 24,
+    transition: { delay: exitAnimationDelay },
+  };
 
   const suparLyrics = useMemo(
     () => (phrase ? phraseToSuparLyrics(phrase) : []),
@@ -27,10 +56,27 @@ export const LyricBoard = ({ className = "" }: { className?: string }) => {
   }, [suparLyrics]);
 
   useEffect(() => {
+    if (phrase) {
+      void controls.start({
+        opacity: [0, 1, 1, 0],
+        y: [4, 0, 0, 4],
+        transition: {
+          ease: "linear",
+          duration: phrase.duration / 1000 - 0.1,
+          times: [0, 0.02, 0.98, 1],
+        },
+      });
+    }
     if (prevPhrase) {
       updateJudges(judge);
     }
   }, [phrase]);
+
+  useEffect(() => {
+    if (!isPlay) {
+      controls.stop();
+    }
+  }, [isPlay]);
 
   const lyrics = useMemo(() => {
     let judgeIndexCount = 0;
@@ -63,20 +109,28 @@ export const LyricBoard = ({ className = "" }: { className?: string }) => {
   }, [suparLyrics]);
 
   return (
-    <div
+    <motion.div
+      initial={!animationDisable ? initialMotion : {}}
+      animate={!animationDisable ? animateMotion : {}}
+      exit={!animationDisable ? exitMotion : {}}
+      transition={{ duration: 0.2 }}
       className={twMerge(
         "relative h-[240px] min-h-[240px] w-full px-[32px] pb-[12px] pt-[58px]",
         className,
       )}
+      {...props}
     >
       <img
         alt="歌詞ボード"
         src="/lyric-board-background.png"
         className="absolute bottom-0 left-0 h-[240px]"
       />
-      <div className="relative flex flex-row flex-wrap items-start">
+      <motion.div
+        animate={controls}
+        className="relative flex flex-row flex-wrap items-start"
+      >
         {lyrics}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };

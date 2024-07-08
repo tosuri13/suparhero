@@ -7,7 +7,7 @@ export const TutorialScreen = () => {
   const { mutate: setScreen } = useSetScreen();
 
   return (
-    <div className="flex h-full w-full items-center justify-center overflow-hidden">
+    <div className="flex h-full w-full items-center justify-center">
       <div className="flex h-full w-full flex-col items-center justify-center">
         <SuparBanner variant="HOWTOPLAY" />
         <SuparDescriptionCarousel

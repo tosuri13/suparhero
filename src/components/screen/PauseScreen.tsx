@@ -36,10 +36,18 @@ export const PauseScreen = ({ className = "" }: { className?: string }) => {
       )}
     >
       <div className="flex flex-col items-center justify-center gap-[80px]">
-        <SuparBanner variant="PAUSE" />
+        <SuparBanner variant="PAUSE" animationDisable />
         <div className="flex flex-col items-center justify-center gap-[24px]">
-          <SuparButton variant="RESTART" onClick={handleRestartClick} />
-          <SuparButton variant="BACKTOTITLE" onClick={handleBackToTitleClick} />
+          <SuparButton
+            variant="RESTART"
+            onClick={handleRestartClick}
+            animationDisable
+          />
+          <SuparButton
+            variant="BACKTOTITLE"
+            onClick={handleBackToTitleClick}
+            animationDisable
+          />
         </div>
       </div>
     </div>
