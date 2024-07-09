@@ -5,7 +5,6 @@ import { twMerge } from "tailwind-merge";
 
 import { MusicContext } from "@/components/MusicProvider";
 import { useJudges } from "@/hooks/useJudges";
-import { preloadImgaes } from "@/utils/preloadImages";
 
 export type RinChanListeningImageProps = {
   className?: string;
@@ -38,14 +37,6 @@ export const RinChanListeningImage = ({
     x: -24,
     transition: { delay: exitAnimationDelay },
   };
-
-  useEffect(() => {
-    preloadImgaes([
-      "/rinchan/default.png",
-      "/rinchan/good.png",
-      "/rinchan/bad.png",
-    ]);
-  }, []);
 
   useEffect(() => {
     if (judges.length !== 0 && beat) {
