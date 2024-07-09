@@ -42,17 +42,17 @@ export const PlayScreen = () => {
         animationDisable={!isPlay}
         exitAnimationDelay={0.3}
       />
-      <SuparReactionImage className="absolute left-[24%] top-[12%] z-10" />
+      <SuparReactionImage className="absolute bottom-[496px] left-[24%] z-10" />
       <RinChanListeningImage
         key="rinchan-listening-image"
-        className="absolute -left-[14%] bottom-[20%] h-auto w-[64%]"
+        className="absolute -left-[14%] bottom-[148px] h-auto w-[275px]"
         animationDisable={!isPlay}
         enterAnimationDelay={0.2}
         exitAnimationDelay={0.1}
       />
       <RenkyunSingingImage
         key="renkyun-singing-image"
-        className="absolute -right-[12%] bottom-[20%] h-auto w-[64%]"
+        className="absolute -right-[12%] bottom-[148px] h-auto w-[275px]"
         animationDisable={!isPlay}
         enterAnimationDelay={0.3}
       />
