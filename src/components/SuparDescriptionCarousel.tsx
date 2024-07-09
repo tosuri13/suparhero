@@ -100,10 +100,10 @@ export const SuparDescriptionCarousel = ({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -directionFactor * 24 }}
             transition={{ duration: 0.1 }}
-            className="flex h-[288px] w-[200px] border-[4px] border-border-secondary bg-background-secondary p-[2px]"
+            className="flex border-[4px] border-border-secondary bg-background-secondary p-[2px]"
           >
             <Image
-              className="h-auto w-full"
+              className="h-[288px] w-[200px]"
               alt="チュートリアルの画像"
               src={carouselItems[carouselIndex].src}
               width={200}

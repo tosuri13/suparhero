@@ -75,6 +75,7 @@ export const RenkyunSingingImage = ({
           }
           width={620}
           height={1040}
+          priority={true}
         />
       </motion.div>
     </motion.div>

@@ -81,6 +81,7 @@ export const RinChanListeningImage = ({
           src={imageSrc}
           width={620}
           height={1109}
+          priority={true}
         />
       </motion.div>
     </motion.div>
