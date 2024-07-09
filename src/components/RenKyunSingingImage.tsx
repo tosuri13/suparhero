@@ -4,6 +4,7 @@ import { HTMLAttributes, useContext, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { EmotionType, MusicContext } from "@/components/MusicProvider";
+import { preloadImgaes } from "@/utils/preloadImages";
 
 const getSrcImagefromEmotion = (emotion: EmotionType) => {
   switch (emotion) {
@@ -45,6 +46,14 @@ export const RenkyunSingingImage = ({
     x: 24,
     transition: { delay: exitAnimationDelay },
   };
+
+  useEffect(() => {
+    preloadImgaes([
+      "/renkyun/happy.png",
+      "/renkyun/sad.png",
+      "/renkyun/neutral.png",
+    ]);
+  }, []);
 
   useEffect(() => {
     if (beat) {
