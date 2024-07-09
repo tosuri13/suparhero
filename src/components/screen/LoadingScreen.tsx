@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 
 export const LoadingScreen = () => {
   return (
@@ -8,15 +9,19 @@ export const LoadingScreen = () => {
       transition={{ duration: 0.5 }}
       className="flex h-full w-full flex-col items-center justify-center gap-[4px] bg-background-secondary"
     >
-      <img
-        className="h-16 w-16 animate-spin-loading"
+      <Image
+        className="h-[64px] w-[64px] animate-spin-loading"
         alt="星の画像"
         src="/loading/star.png"
+        width={64}
+        height={64}
       />
-      <img
+      <Image
         className="h-[54px] w-[327px]"
         alt="Waiting for HERO..."
         src="/loading/waiting-for-hero.png"
+        width={327}
+        height={54}
       />
     </motion.div>
   );

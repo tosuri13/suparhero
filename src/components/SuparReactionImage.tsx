@@ -1,4 +1,5 @@
 import { motion, useAnimationControls } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -36,9 +37,21 @@ export const SuparReactionImage = ({
           className={twMerge("h-[102px] w-[104px]", className)}
         >
           {judges[judges.length - 1].every((judge) => !judge) ? (
-            <img alt="良い反応" src="/supar-reaction/good.png" />
+            <Image
+              className="h-auto w-full"
+              alt="良い反応"
+              src="/supar-reaction/good.png"
+              width={124.7}
+              height={122.5}
+            />
           ) : (
-            <img alt="悪い反応" src="/supar-reaction/bad.png" />
+            <Image
+              className="h-auto w-full"
+              alt="悪い反応"
+              src="/supar-reaction/bad.png"
+              width={124.7}
+              height={122.5}
+            />
           )}
         </motion.div>
       )}

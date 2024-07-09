@@ -1,4 +1,5 @@
 import { motion, MotionProps, useAnimationControls } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes, useContext, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -60,17 +61,20 @@ export const RenkyunSingingImage = ({
       animate={!animationDisable ? animateMotion : {}}
       exit={!animationDisable ? exitMotion : {}}
       transition={{ duration: 0.2 }}
-      className={twMerge("", className)}
+      className={twMerge("h-[1040px] w-[620px]", className)}
       {...props}
     >
       <motion.div animate={controls} className="h-full w-full">
-        <img
+        <Image
+          className="h-auto w-full"
           alt="レンきゅんが歌っている画像"
           src={
             phrase
               ? getSrcImagefromEmotion(emotion)
               : "/renkyun/not-singing.png"
           }
+          width={620}
+          height={1040}
         />
       </motion.div>
     </motion.div>

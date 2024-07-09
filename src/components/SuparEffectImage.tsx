@@ -1,4 +1,5 @@
 import { motion, MotionProps, useAnimationControls } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -53,7 +54,13 @@ export const SuparEffectImage = ({
       className={twMerge("w-[80px] min-w-[80px]", className)}
       {...props}
     >
-      <img alt={alt} src={src} />
+      <Image
+        className="h-auto w-full"
+        alt={alt}
+        src={src}
+        width={113.9}
+        height={91.4}
+      />
     </motion.div>
   );
 };

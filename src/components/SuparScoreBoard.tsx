@@ -1,4 +1,5 @@
 import { AnimatePresence, motion, MotionProps } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -46,10 +47,12 @@ export const SuparScoreBoard = ({
       )}
       {...props}
     >
-      <img
-        className="absolute"
+      <Image
+        className="absolute h-auto w-full"
         alt="スコアボード"
         src="/result/score-board.png"
+        width={327}
+        height={171}
       />
       <div className="relative flex h-full w-full flex-row justify-center">
         <p className="absolute left-[38px] top-[68px] text-[32px]">{`${accuracy}%`}</p>

@@ -1,4 +1,5 @@
 import { motion, MotionProps } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -8,12 +9,12 @@ const getImageProps = (rank: RankType): { alt: string; src: string } => {
   switch (rank) {
     case "C":
       return {
-        alt: "もう一回!!",
+        alt: "まだまだ!!",
         src: "/supar-comment/comment-c.png",
       };
     case "B":
       return {
-        alt: "まだまだ!!",
+        alt: "いい感じ!!",
         src: "/supar-comment/comment-b.png",
       };
     case "A":
@@ -70,7 +71,13 @@ export const SuparCommentImage = ({
       className={twMerge("h-[150px] w-[200px]", className)}
       {...props}
     >
-      <img alt={alt} src={src} />
+      <Image
+        className="h-auto w-full"
+        alt={alt}
+        src={src}
+        width={248.9}
+        height={183.7}
+      />
     </motion.div>
   );
 };

@@ -62,7 +62,7 @@ export const ResultScreen = () => {
             exitAnimationDelay={0.3}
           />
           <RenKyunCommentImage
-            className="absolute -right-[8%] top-0 w-[240px]"
+            className="absolute -right-[8%] top-0 h-auto w-[240px]"
             enterAnimationDelay={0.3}
             exitAnimationDelay={0.3}
           />

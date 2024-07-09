@@ -1,4 +1,5 @@
 import { motion, MotionProps } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -68,7 +69,14 @@ export const SuparRankImage = ({
       className={twMerge("h-[106px] w-[113px]", className)}
       {...props}
     >
-      <img alt={alt} src={src} />
+      <Image
+        className="h-auto w-full"
+        alt={alt}
+        src={src}
+        width={208.7}
+        height={195.4}
+        priority={true}
+      />
     </motion.div>
   );
 };

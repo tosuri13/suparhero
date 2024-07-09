@@ -1,4 +1,5 @@
 import { motion, MotionProps } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -7,7 +8,7 @@ export type SuparTitleLogoImageProps = {
   animationDisable?: boolean;
   enterAnimationDelay?: number;
   exitAnimationDelay?: number;
-} & HTMLAttributes<HTMLImageElement> &
+} & HTMLAttributes<HTMLDivElement> &
   MotionProps;
 
 export const SuparTitleLogoImage = ({
@@ -30,15 +31,22 @@ export const SuparTitleLogoImage = ({
   };
 
   return (
-    <motion.img
+    <motion.div
       initial={!animationDisable ? initialMotion : {}}
       animate={!animationDisable ? animateMotion : {}}
       exit={!animationDisable ? exitMotion : {}}
       transition={{ duration: 0.2 }}
       className={twMerge("max-w-full", className)}
-      alt="SUPAEHEROのタイトルロゴ"
-      src="/title/suparhero-logo.png"
       {...props}
-    />
+    >
+      <Image
+        className="h-auto w-full"
+        alt="SUPAEHEROのタイトルロゴ"
+        src="/title/suparhero-logo.png"
+        width={432}
+        height={254.5}
+        priority={true}
+      />
+    </motion.div>
   );
 };

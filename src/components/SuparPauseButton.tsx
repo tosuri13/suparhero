@@ -1,4 +1,5 @@
 import { motion, MotionProps } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes, useContext } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -53,7 +54,13 @@ export const SuparPauseButton = ({
       onClick={handleClick}
       {...props}
     >
-      <img alt="ポーズボタン" src="/play/pause-button.png" />
+      <Image
+        className="h-auto w-full"
+        alt="ポーズボタン"
+        src="/play/pause-button.png"
+        width={68.5}
+        height={67.5}
+      />
     </motion.button>
   );
 };

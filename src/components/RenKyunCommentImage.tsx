@@ -1,4 +1,5 @@
 import { motion, MotionProps } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -7,7 +8,7 @@ export type RenKyunCommentImageProps = {
   animationDisable?: boolean;
   enterAnimationDelay?: number;
   exitAnimationDelay?: number;
-} & HTMLAttributes<HTMLImageElement> &
+} & HTMLAttributes<HTMLDivElement> &
   MotionProps;
 
 export const RenKyunCommentImage = ({
@@ -30,15 +31,21 @@ export const RenKyunCommentImage = ({
   };
 
   return (
-    <motion.img
+    <motion.div
       initial={!animationDisable ? initialMotion : {}}
       animate={!animationDisable ? animateMotion : {}}
       exit={!animationDisable ? exitMotion : {}}
       transition={{ duration: 0.2 }}
-      className={twMerge("", className)}
-      alt="レンきゅんが褒めてくれる画像"
-      src="/renkyun/happy.png"
+      className={twMerge("h-[1040px] w-[620px]", className)}
       {...props}
-    />
+    >
+      <Image
+        className="h-auto w-full"
+        alt="レンきゅんが褒めてくれる画像"
+        src="/renkyun/happy.png"
+        width={620}
+        height={1040}
+      />
+    </motion.div>
   );
 };

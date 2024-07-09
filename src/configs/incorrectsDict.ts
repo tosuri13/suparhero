@@ -54,11 +54,5 @@ export const incorrectsDict: { [key: string]: string[] } = {
   雲: ["霞", "曇", "霧"],
   Fly: ["Fry", "Flay", "Fray"],
   七色: ["虹色", "極彩"],
-  Beautiful: [
-    "Baeutiful",
-    "Beauteful",
-    "Beauntiful",
-    "Beautifull",
-    "Beautyful",
-  ],
+  Beautiful: ["Baeutiful", "Beauteful", "Beautifull", "Beautyful"],
 };

@@ -1,4 +1,5 @@
 import { motion, MotionProps } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -66,7 +67,14 @@ export const SuparBanner = ({
       className={twMerge("h-[115px] w-[380px]", className)}
       {...props}
     >
-      <img alt={alt} src={src} />
+      <Image
+        className="h-auto w-full"
+        alt={alt}
+        src={src}
+        width={380}
+        height={115}
+        priority={true}
+      />
     </motion.div>
   );
 };

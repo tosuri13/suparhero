@@ -1,4 +1,5 @@
 import { motion, MotionProps } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -72,10 +73,17 @@ export const SuparButton = ({
       animate={!animationDisable ? animateMotion : {}}
       exit={!animationDisable ? exitMotion : {}}
       transition={{ duration: 0.2 }}
-      className={twMerge("h-[66px] w-[250px] cursor-pointer", className)}
+      className={twMerge("h-[66px] w-[246px] cursor-pointer", className)}
       {...props}
     >
-      <img alt={alt} src={src} />
+      <Image
+        className="h-auto w-full"
+        alt={alt}
+        src={src}
+        width={250}
+        height={66}
+        priority={true}
+      />
     </motion.button>
   );
 };

@@ -1,4 +1,5 @@
 import { motion, MotionProps, useAnimationControls } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes } from "react";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -117,10 +118,12 @@ export const SuparLyricBoard = ({
       )}
       {...props}
     >
-      <img
+      <Image
+        className="absolute bottom-0 left-0 h-[240px] w-full"
         alt="歌詞ボード"
         src="/play/lyric-board.png"
-        className="absolute bottom-0 left-0 h-[240px]"
+        width={497.5}
+        height={242}
       />
       <motion.div
         animate={controls}

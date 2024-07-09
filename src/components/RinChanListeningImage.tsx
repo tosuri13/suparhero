@@ -1,4 +1,5 @@
 import { motion, MotionProps, useAnimationControls } from "framer-motion";
+import Image from "next-export-optimize-images/image";
 import { HTMLAttributes, useContext, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -70,11 +71,17 @@ export const RinChanListeningImage = ({
       animate={!animationDisable ? animateMotion : {}}
       exit={!animationDisable ? exitMotion : {}}
       transition={{ duration: 0.2 }}
-      className={twMerge("", className)}
+      className={twMerge("h-[1109px] w-[620px]", className)}
       {...props}
     >
       <motion.div animate={controls} className="h-full w-full">
-        <img alt="歌を聞いてくれるリンちゃんの画像" src={imageSrc} />
+        <Image
+          className="h-auto w-full"
+          alt="歌を聞いてくれるリンちゃんの画像"
+          src={imageSrc}
+          width={620}
+          height={1109}
+        />
       </motion.div>
     </motion.div>
   );

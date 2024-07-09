@@ -79,10 +79,12 @@ export const SuparDescriptionCarousel = ({
     >
       <div className="flex w-full flex-row items-center justify-center gap-[24px]">
         {carouselIndex !== 0 ? (
-          <img
-            className="w-[48px] cursor-pointer"
+          <Image
+            className="h-[74px] w-[48px] cursor-pointer"
             alt="前のページへ"
             src="/tutorial/left-arrow.png"
+            width={48}
+            height={74}
             onClick={() => {
               setDirectionFactor(-1);
               setCarouselIndex((prev) => prev - 1);
@@ -98,9 +100,10 @@ export const SuparDescriptionCarousel = ({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -directionFactor * 24 }}
             transition={{ duration: 0.1 }}
-            className="flex border-[4px] border-border-secondary bg-background-secondary p-[2px]"
+            className="flex h-[288px] w-[200px] border-[4px] border-border-secondary bg-background-secondary p-[2px]"
           >
             <Image
+              className="h-auto w-full"
               alt="チュートリアルの画像"
               src={carouselItems[carouselIndex].src}
               width={200}
@@ -110,10 +113,12 @@ export const SuparDescriptionCarousel = ({
           </motion.div>
         </AnimatePresence>
         {carouselIndex !== carouselItems.length - 1 ? (
-          <img
-            className="w-[48px] cursor-pointer"
+          <Image
+            className="h-[74px] w-[48px] cursor-pointer"
             alt="次のページへ"
             src="/tutorial/right-arrow.png"
+            width={48}
+            height={74}
             onClick={() => {
               setDirectionFactor(1);
               setCarouselIndex((prev) => prev + 1);
@@ -124,10 +129,12 @@ export const SuparDescriptionCarousel = ({
         )}
       </div>
       <div className="relative mb-[16px] mt-[8px] flex h-[112px] w-[368px] items-center justify-center">
-        <img
-          className="absolute"
+        <Image
+          className="absolute h-auto w-full"
           alt="説明ボード"
           src="/tutorial/description-board.png"
+          width={380}
+          height={117}
         />
         <AnimatePresence mode="wait">
           <motion.div
