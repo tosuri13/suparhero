@@ -7,6 +7,7 @@ import { MusicContext } from "@/components/MusicProvider";
 
 export type SuparPauseButtonProps = {
   className?: string;
+  disable?: boolean;
   animationDisable?: boolean;
   enterAnimationDelay?: number;
   exitAnimationDelay?: number;
@@ -15,6 +16,7 @@ export type SuparPauseButtonProps = {
 
 export const SuparPauseButton = ({
   className = "",
+  disable = false,
   animationDisable = false,
   enterAnimationDelay = 0.0,
   exitAnimationDelay = 0.0,
@@ -35,7 +37,7 @@ export const SuparPauseButton = ({
   };
 
   const handleClick = () => {
-    if (player && setIsPlay) {
+    if (player && setIsPlay && !disable) {
       setIsPlay(false);
       player.requestPause();
     }
@@ -48,7 +50,7 @@ export const SuparPauseButton = ({
       exit={!animationDisable ? exitMotion : {}}
       transition={{ duration: 0.2 }}
       className={twMerge(
-        "flex h-[56px] w-[56px] cursor-pointer items-center justify-center",
+        `flex h-[56px] w-[56px]  items-center justify-center ${disable ? "cursor-default" : "cursor-pointer"}`,
         className,
       )}
       onClick={handleClick}

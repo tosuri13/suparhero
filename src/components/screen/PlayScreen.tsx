@@ -39,6 +39,7 @@ export const PlayScreen = () => {
       <SuparPauseButton
         key="supar-pause-button"
         className="absolute right-3 top-3 z-10"
+        disable={isWaiting}
         animationDisable={!isPlay}
         exitAnimationDelay={0.3}
       />
