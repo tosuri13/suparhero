@@ -130,11 +130,11 @@ $ npm run build
 
 本アプリケーションは、以下の方々のご協力の元作成されています。本当にありがとうございました!!
 
-- [**Kanon様**](https://x.com/kanonnot_)
+- [**Kanon(874wokiite)**](https://x.com/kanonnot_) 様
 
   - とても可愛いリンちゃんとレンくんのイラストを書き下ろしていただきました!!
 
-- [**OKUMONO様**](https://sozaino.site)
+- [**OKUMONO**](https://sozaino.site) 様
 
   - アメコミ調の背景や吹き出しなどの素材をお借りさせていただきました!!
 
