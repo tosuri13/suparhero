@@ -80,7 +80,13 @@ PC端末・モバイル端末、どちらでも本アプリケーションを遊
 
 ## 🚀 Build & Deploy
 
-以下のコマンドで、モジュールのインストールとビルドを行います。
+ルートディレクトリに`.env.local`ファイルを作成し、`NEXT_PUBLIC_TEXTALIVE_TOKEN`環境変数にTextAliveの開発者トークンをセットします。
+
+```
+NEXT_PUBLIC_TEXTALIVE_TOKEN={開発者トークン}
+```
+
+次に以下のコマンドで、モジュールのインストールとビルドを行います。
 
 ```
 $ npm install
@@ -96,7 +102,7 @@ $ npm run build
 > $ npm run start
 > ```
 
-## 😤 Appeal Point
+## 😤 Appeal point
 
 - 誤回答のパターンを数多く用意しており、ゲームが始まる度にレンくんが間違える単語や語彙がランダムに変わります。
 
