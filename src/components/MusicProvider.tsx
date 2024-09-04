@@ -58,7 +58,7 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const player = new Player({
       app: {
-        token: "IFfHtwAMpUTKVjGN",
+        token: process.env.NEXT_PUBLIC_TEXTALIVE_TOKEN || "",
       },
       mediaElement: mediaElementRef.current!,
     });
